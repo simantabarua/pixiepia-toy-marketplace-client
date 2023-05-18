@@ -2,12 +2,14 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateToyForm = () => {
   const { register, handleSubmit } = useForm();
-  const { user, loading } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
   const toy = useLoaderData();
   const {
+    _id,
     sellerEmail,
     sellerName,
     toyName,
@@ -31,8 +33,8 @@ const UpdateToyForm = () => {
 
   const handleAddToys = (data) => {
     console.log(data);
-    fetch("http://localhost:5000/toys", {
-      method: "POST",
+    fetch(`http://localhost:5000/toy/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -40,7 +42,9 @@ const UpdateToyForm = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        if (result.modifiedCount > 0) {
+          Swal.fire("Updated!", "Your file has been Updated.", "success");
+       }
       });
   };
   if (loading) {
@@ -164,7 +168,6 @@ const UpdateToyForm = () => {
               type="email"
               value={sellerEmail}
               {...register("sellerEmail")}
-              defaultValue={sellerEmail}
               placeholder="Seller Email"
               className="input input-bordered"
             />
