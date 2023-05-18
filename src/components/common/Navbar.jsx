@@ -2,9 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import menuLinks from "../../utils/menuLinks";
 import { FaBars } from "react-icons/fa";
 import { HiOutlineX } from "react-icons/hi";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { logOut, user } = useContext(AuthContext);
   const menuToggler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -13,6 +15,10 @@ const Navbar = () => {
       <NavLink to={path}>{label}</NavLink>
     </li>
   ));
+
+  const handleLogout = () => {
+    logOut();
+  };
   return (
     <div className="navbar  bg-pink-100 lg:px-24 w-full">
       <div className="navbar-start">
@@ -42,6 +48,17 @@ const Navbar = () => {
           {/* For desktop  */}
           {navLinks}
         </ul>
+      </div>
+      <div className="navbar-end">
+        {user ? (
+          <Link onClick={handleLogout} >
+            <button className="btn bg-pink-600 border-0">Logout</button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <button className="btn bg-pink-600 border-0">Login</button>
+          </Link>
+        )}
       </div>
     </div>
   );

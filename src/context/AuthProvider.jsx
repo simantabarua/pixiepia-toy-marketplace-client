@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { app } from "../firebase/firebase.config";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -8,7 +9,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { app } from "../firebase/firebase.config";
+
 //context export
 export const AuthContext = createContext(null);
 
@@ -17,49 +18,30 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
-  //register
-  const createUserWithEmail = (email, password) => {
-    setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
-  //login
+
+  //handle email login
   const signInUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   //handle google login
-
-  const GoogleLogin = () => {
+  const googleLogin = () => {
     return signInWithPopup(auth, googleProvider);
   };
+
+  //register
+  const createUserWithEmail = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
   //observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("on othAuth", currentUser);
-
       setLoading(false);
-
-      if (currentUser && currentUser?.email) {
-        const loggedUser = {
-          email: currentUser.email,
-        };
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(loggedUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            localStorage.setItem("access-token", data.token);
-            console.log(data.token);
-          });
-      } else {
-        localStorage.removeItem("access-token");
-      }
     });
     return () => {
       return unsubscribe;
@@ -71,13 +53,16 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
   const authInfo = {
+    auth,
     user,
     loading,
+    setLoading,
     signInUser,
     createUserWithEmail,
     logOut,
-    GoogleLogin,
+    googleLogin,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -131,17 +131,6 @@ const AddToyForm = () => {
           />
         </div>
 
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Features</span>
-          </label>
-          <input
-            type="text"
-            {...register("features")}
-            placeholder="Features"
-            className="input input-bordered"
-          />
-        </div>
 
         <div className="form-control">
           <label className="label">

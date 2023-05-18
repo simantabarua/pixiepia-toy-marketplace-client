@@ -1,10 +1,17 @@
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../context/AuthProvider";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const {signInUser, googleLogin} = useContext(AuthContext)
   const {
     register,
     handleSubmit,
@@ -12,9 +19,64 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = (data) => {
-    // const { email, password } = data;
-    console.log(data);
+    const { email, password } = data;
+
+    // Email password login
+    signInUser(email, password)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Sign in success",
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        let errorMessage;
+
+        switch (error.code) {
+          case "auth/invalid-email":
+            errorMessage = "Invalid email address";
+            break;
+          case "auth/user-disabled":
+            errorMessage = "This account has been disabled";
+            break;
+          case "auth/user-not-found":
+            errorMessage = "User not found";
+            break;
+          case "auth/wrong-password":
+            errorMessage = "Incorrect password try again";
+            break;
+          default:
+            errorMessage = error.message;
+            break;
+        }
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<span style="color:red">${errorMessage}</span>`,
+        });
+      });
   };
+
+  // google login
+  const handleGoogleSignIn = () => { 
+    googleLogin()
+    .then(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Sign in success",
+      });
+      navigate(from, { replace: true });
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        html: `<span style="color:red">${error.message}</span>`,
+      });
+    });
+   }
 
   return (
     <>
@@ -32,9 +94,11 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                className="input input-bordered"
-                placeholder="email"
+                placeholder="enter your email"
                 {...register("email", { required: "Email is required" })}
+                className={`input input-bordered ${
+                  errors.email ? "input-error" : ""
+                }`}
               />
               {errors.email && (
                 <p className="text-red-600">{errors.email.message}</p>
@@ -47,11 +111,13 @@ const Login = () => {
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  className="input input-bordered w-full"
                   placeholder="password"
                   {...register("password", {
                     required: "Password is required",
                   })}
+                  className={`input input-bordered w-full ${
+                    errors.password ? "input-error" : ""
+                  }`}
                 />
                 <button
                   className="absolute right-2 inset-y-0"
@@ -87,15 +153,13 @@ const Login = () => {
               </button>
             </div>
           </form>
-          {/* {error && (
-            <p className="text-red-600 my-1 font-semibold"> {error} </p>
-          )}
+        
           <button
             onClick={handleGoogleSignIn}
             className="btn btn-outline  w-full"
           >
             <FaGoogle className="w-6 h-6 mx-5" /> Login With Google
-          </button> */}
+          </button>
 
           <div>
             <h2>Don&apos;t have an account?</h2>
