@@ -1,7 +1,7 @@
+import AddToyForm from "../components/addtoy/AddToyForm";
+
 const AddToy = () => {
-  return (
-    <div>AddToy</div>
-  );
+  return <AddToyForm />;
 };
 
 export default AddToy;

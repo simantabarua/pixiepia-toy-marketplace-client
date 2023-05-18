@@ -5,6 +5,8 @@ const menuLinks = [
   { path: "/toydetails", label: "Toy Details" },
   { path: "/addtoy", label: "Add Toy" },
   { path: "/mytoys", label: "My Toys" },
+  { path: "/login", label: "login" },
+  { path: "/register", label: "login" },
 ];
 
 export default menuLinks;
