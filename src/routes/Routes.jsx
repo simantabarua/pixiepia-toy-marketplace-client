@@ -10,6 +10,7 @@ import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import UpdateToy from "../pages/UpdateToy";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/update_toy/:id",
+        element: <UpdateToy />,
       },
       {
         path: "*",

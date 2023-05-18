@@ -2,9 +2,6 @@ import { useLoaderData } from "react-router-dom";
 
 const AllToys = () => {
   const toys = useLoaderData();
-
-  console.log(toys);
-
   return (
     <div>
       <div className="overflow-x-auto">
@@ -12,8 +9,8 @@ const AllToys = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Seller</th>
               <th>Toy Name</th>
+              <th>Seller</th>
               <th>Sub-category</th>
               <th>Price</th>
               <th>Available Quantity</th>
@@ -34,8 +31,8 @@ const AllToys = () => {
               }) => (
                 <tr key={_id}>
                   <td></td>
-                  <td>{sellerName}</td>
                   <td>{toyName}</td>
+                  <td>{sellerName}</td>
                   <td>{subCategory}</td>
                   <td>{price}</td>
                   <td>{availableQuantity}</td>
