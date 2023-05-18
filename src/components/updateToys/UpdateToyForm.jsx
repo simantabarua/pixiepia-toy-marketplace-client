@@ -1,15 +1,36 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider";
+import { useLoaderData } from "react-router-dom";
 
 const UpdateToyForm = () => {
   const { register, handleSubmit } = useForm();
   const { user, loading } = useContext(AuthContext);
-  console.log(user.displayName);
+  const toy = useLoaderData();
+  const {
+    sellerEmail,
+    sellerName,
+    toyName,
+    description,
+    price,
+    availableQuantity,
+    category,
+    subCategory,
+    brand,
+    material,
+    color,
+    weight,
+    countryOfOrigin,
+    pictureUrl,
+    ageRange,
+    detailDescription,
+    date,
+  } = toy;
+
+  console.log(toy);
 
   const handleAddToys = (data) => {
     console.log(data);
-    // Perform your logic to submit the form data
     fetch("http://localhost:5000/toys", {
       method: "POST",
       headers: {
@@ -36,6 +57,7 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("toyName")}
+              defaultValue={toyName}
               placeholder="Name"
               className="input input-bordered"
             />
@@ -46,13 +68,12 @@ const UpdateToyForm = () => {
             </label>
             <input
               type="number"
-              step="0.01"
               {...register("price")}
+              defaultValue={price}
               placeholder="Price"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Category</span>
@@ -60,11 +81,11 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("category")}
+              defaultValue={category}
               placeholder="Category"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Sub-category</span>
@@ -72,6 +93,7 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("subCategory")}
+              defaultValue={subCategory}
               placeholder="Sub-category"
               className="input input-bordered"
             />
@@ -82,6 +104,7 @@ const UpdateToyForm = () => {
             </label>
             <textarea
               {...register("description")}
+              defaultValue={description}
               placeholder="Description"
               className="input input-bordered pt-2"
             />
@@ -92,23 +115,23 @@ const UpdateToyForm = () => {
             </label>
             <textarea
               {...register("detailDescription")}
+              defaultValue={detailDescription}
               placeholder="Detail Description"
               className="input input-bordered pt-2"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Available Quantity </span>
+              <span className="label-text">Available Quantity</span>
             </label>
             <input
               type="text"
               {...register("availableQuantity")}
+              defaultValue={availableQuantity}
               placeholder="Available Quantity"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Picture URL</span>
@@ -116,11 +139,11 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("pictureUrl")}
+              defaultValue={pictureUrl}
               placeholder="Picture URL"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Seller Name</span>
@@ -128,20 +151,20 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("sellerName")}
-              value={user?.displayName}
+              value={sellerName}
               placeholder="Seller Name"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Seller Email</span>
             </label>
             <input
               type="email"
-              value={user?.email}
+              value={sellerEmail}
               {...register("sellerEmail")}
+              defaultValue={sellerEmail}
               placeholder="Seller Email"
               className="input input-bordered"
             />
@@ -153,11 +176,11 @@ const UpdateToyForm = () => {
             <input
               type="date"
               {...register("date")}
+              defaultValue={date}
               placeholder="Release Date"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Brand</span>
@@ -165,11 +188,11 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("brand")}
+              defaultValue={brand}
               placeholder="Brand"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Age Range</span>
@@ -177,11 +200,11 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("ageRange")}
+              defaultValue={ageRange}
               placeholder="Age Range"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Material</span>
@@ -189,11 +212,11 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("material")}
+              defaultValue={material}
               placeholder="Material"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Weight</span>
@@ -201,11 +224,11 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("weight")}
+              defaultValue={weight}
               placeholder="Weight"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Color</span>
@@ -213,11 +236,11 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("color")}
+              defaultValue={color}
               placeholder="Color"
               className="input input-bordered"
             />
           </div>
-
           <div className="form-control">
             <label className="label">
               <span className="label-text">Country of Origin</span>
@@ -225,13 +248,14 @@ const UpdateToyForm = () => {
             <input
               type="text"
               {...register("countryOfOrigin")}
+              defaultValue={countryOfOrigin}
               placeholder="Country of Origin"
               className="input input-bordered"
             />
           </div>
         </div>
 
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center my-4">
           <button type="submit" className="btn bg-pink-600 w-96">
             Add Toy
           </button>
