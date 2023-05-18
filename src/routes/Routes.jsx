@@ -9,6 +9,7 @@ import NotFound from "../pages/NotFound";
 import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       {
         path: "/alltoys",
         element: <AllToys />,
+        loader: () => fetch("http://localhost:5000/toys"),
       },
       {
         path: "/toydetails",
@@ -33,7 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addtoy",
-        element: <AddToy />,
+        element: (
+          <PrivateRoute>
+            <AddToy />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/mytoys",
