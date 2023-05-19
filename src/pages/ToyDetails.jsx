@@ -1,9 +1,11 @@
+import { CiImageOff } from "react-icons/ci";
 import { useLoaderData } from "react-router-dom";
 
 const ToyDetails = () => {
   const toy = useLoaderData();
   const {
     sellerName,
+    sellerEmail,
     toyName,
     description,
     price,
@@ -23,7 +25,14 @@ const ToyDetails = () => {
     <div>
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 p-2  md:py-24 md:px-24 max-w-6xl mx-auto">
-          <img src={pictureUrl} className="max-w-sm rounded-lg shadow-2xl" />
+          {pictureUrl ? (
+            <img src={pictureUrl} className="max-w-sm rounded-lg shadow-2xl " />
+          ) : (
+              <div>
+                <CiImageOff className="w-32 h-32" />
+                <h2>Image not Found :( </h2>
+            </div>
+          )}
           <div className="space-y-4">
             <p className="font-semibold">{brand}</p>
             <h1 className="text-5xl font-bold">{toyName}</h1>
@@ -44,7 +53,7 @@ const ToyDetails = () => {
         </div>
         <div>
           <div className="md:max-w-5xl mx-auto py-5">
-          <h2 className="text-xl font-semibold py-5">Specification</h2>
+            <h2 className="text-xl font-semibold py-5">Specification</h2>
             <table className="table w-full  ">
               <tbody>
                 <tr>
@@ -55,7 +64,7 @@ const ToyDetails = () => {
                   <td>Price</td>
                   <td>{price}</td>
                 </tr>
-               
+
                 <tr>
                   <td>Material</td>
                   <td>{material}</td>
@@ -75,6 +84,10 @@ const ToyDetails = () => {
                 <tr>
                   <td>Seller Name</td>
                   <td>{sellerName}</td>
+                </tr>
+                <tr>
+                  <td>Seller Email</td>
+                  <td>{sellerEmail}</td>
                 </tr>
                 <tr>
                   <td>Country of Origin</td>
