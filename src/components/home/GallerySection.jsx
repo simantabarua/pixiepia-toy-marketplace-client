@@ -7,14 +7,21 @@ import "swiper/css/pagination";
 
 const GallerySection = () => {
   const images = [
-    "https://i.ibb.co/2S3NW5F/1.png",
-    "https://i.ibb.co/QjQxtWL/2.png",
-    "https://i.ibb.co/fMf1pTp/3.png",
-    "https://i.ibb.co/cDVVqnQ/4.png",
-    "https://i.ibb.co/cDVVqnQ/4.png",
-    "https://i.ibb.co/cDVVqnQ/4.png",
-    "https://i.ibb.co/cDVVqnQ/4.png",
-    "https://i.ibb.co/cDVVqnQ/4.png",
+    "https://i.ibb.co/7JYvh9S/LEGO-Toy-Story-Buzz-Lightyear-s-Space-Ranger-Set.jpg",
+    "https://i.ibb.co/KbM13sd/Disney-Princess-Enchanted-Castle-Playset.jpg",
+    "https://i.ibb.co/VwLr5WR/Disney-Fairies-Playset.jpg",
+    "https://i.ibb.co/YZffqKs/Disney-Frozen-Elsa-Plush-Doll.jpg",
+    "https://i.ibb.co/xFKgqvx/Disney-Pixar-Cars-Die-Cast-Vehicles.jpg",
+    "https://i.ibb.co/HPN6V6L/Disney-Princess-Castle.jpg",
+    "https://i.ibb.co/X2kWFQz/Disney-Princess-Cinderella-Doll.jpg",
+    "https://i.ibb.co/M5CfKPK/Baby-Mona-Doll.jpg",
+    "https://i.ibb.co/C5ksdrf/Fisher-Price-Little-People-Princess-Castle.jpg",
+    "https://i.ibb.co/jDD7rh4/hot-Wheels-Ultimate-Garage-Playset.jpg",
+    "https://i.ibb.co/xsjNWS3/Jungle-Safari-Animal-Doll-Set.jpg",
+    "https://i.ibb.co/gwYBfs9/LEGO-Disney-Cinderella-s-Castle.jpg",
+    "https://i.ibb.co/W3gRQcn/LEGO-Disney-Frozen-Arendelle-Castle.jpg",
+    "https://i.ibb.co/WHbkxLk/Mega-Construx-Toy-Story-Pizza-Planet-Playset.jpg",
+    "https://i.ibb.co/wQqvGZ8/Rapunzel-Toddler-Doll.jpg",
   ];
   return (
     <div>
@@ -50,7 +57,7 @@ const GallerySection = () => {
       >
         {images.map((image, index) => (
           <SwiperSlide className="h-full" key={index}>
-            <img src={image} alt="" />
+            <img className="w-72 h-72 object-cover" src={image} alt="" />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -7,10 +7,8 @@ import { options } from "../../utils/categoryOptions";
 const AddToyForm = () => {
   const { register, handleSubmit, watch } = useForm();
   const { user, loading } = useContext(AuthContext);
-  console.log(user.displayName);
 
   const handleAddToys = (data) => {
-    console.log(data);
     // Perform your logic to submit the form data
     fetch("http://localhost:5000/toys", {
       method: "POST",
@@ -59,49 +57,48 @@ const AddToyForm = () => {
         </div>
 
         <div className="form-control">
-  <label className="label">
-    <span className="label-text">Category</span>
-  </label>
-  <select
-    {...register("category")}
-    className="select select-ghost w-full max-w-xs"
-    defaultValue=""
-  >
-    <option value="" disabled>
-      Select Category
-    </option>
-    {options.map((option, index) => (
-      <option key={index} value={option.category}>
-        {option.category}
-      </option>
-    ))}
-  </select>
-</div>
+          <label className="label">
+            <span className="label-text">Category</span>
+          </label>
+          <select
+            {...register("category")}
+            className="select select-ghost w-full max-w-xs"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select Category
+            </option>
+            {options.map((option, index) => (
+              <option key={index} value={option.category}>
+                {option.category}
+              </option>
+            ))}
+          </select>
+        </div>
 
-<div className="form-control">
-  <label className="label">
-    <span className="label-text">Sub Category</span>
-  </label>
-  <select
-    {...register("subcategory")}
-    className="select select-ghost w-full max-w-xs"
-    defaultValue=""
-  >
-    <option value="" disabled>
-      Select Sub Category
-    </option>
-    {options.map(
-      (option) =>
-        option.category === watch("category") &&
-        option.subcategory.map((subcat, subIndex) => (
-          <option key={subIndex} value={subcat}>
-            {subcat}
-          </option>
-        ))
-    )}
-  </select>
-</div>
-
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Sub Category</span>
+          </label>
+          <select
+            {...register("subcategory")}
+            className="select select-ghost w-full max-w-xs"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select Sub Category
+            </option>
+            {options.map(
+              (option) =>
+                option.category === watch("category") &&
+                option.subcategories.map((subcat, subIndex) => (
+                  <option key={subIndex} value={subcat}>
+                    {subcat}
+                  </option>
+                ))
+            )}
+          </select>
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Description</span>
@@ -174,12 +171,12 @@ const AddToyForm = () => {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Release Date</span>
+            <span className="label-text">Rating</span>
           </label>
           <input
-            type="date"
-            {...register("date")}
-            placeholder="Release Date"
+            type="text"
+            {...register("rating")}
+            placeholder="Rating"
             className="input input-bordered"
           />
         </div>

@@ -1,23 +1,23 @@
 export const options = [
-  
-    {
-      category: "Plush Toys",
-      subcategory: [
-        "Disney Princesses",
-        "Mickey Mouse and Friends",
-        "Pixar Characters",
-      ],
-    },
-    {
-      category: "Vehicles",
-      subcategory: ["Cars", "Pirates of the Caribbean", "Star Wars"],
-    },
-    {
-      category: "Dolls",
-      subcategory: ["Frozen", "Beauty and the Beast", "Cinderella"],
-    },
-    {
-      category: "Building Blocks",
-      subcategory: ["Disney Castle", "Toy Story", "Marvel Superheroes"],
-    },
-  ];
+  {
+    category: "Dolls",
+    subcategories: ["Princes Dolls", "Animal Dolls", "Toddler Dolls"],
+  },
+  {
+    category: "Building Blocks",
+    subcategories: ["Disney Castle", "Toy Story"],
+  },
+  {
+    category: "Vehicles",
+    subcategories: ["Cars", "Train"],
+  },
+  {
+    category: "Playsets",
+    subcategories: [
+      "Princess Castle",
+      "Frozen Arendelle Castle",
+      "Toy Story Playset",
+      "Pixar Playset",
+    ],
+  },
+];

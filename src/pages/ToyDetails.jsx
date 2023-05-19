@@ -3,8 +3,6 @@ import { useLoaderData } from "react-router-dom";
 const ToyDetails = () => {
   const toy = useLoaderData();
   const {
-    _id,
-    sellerEmail,
     sellerName,
     toyName,
     description,
@@ -20,24 +18,74 @@ const ToyDetails = () => {
     pictureUrl,
     ageRange,
     detailDescription,
-    date,
   } = toy;
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row">
-          <img
-            src="https://babystreet.althemist.com/wp-content/uploads/2019/01/baby-prod15-1.jpg"
-            className="max-w-sm rounded-lg shadow-2xl"
-          />
-          <div>
+      <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 p-2  md:py-24 md:px-24 max-w-6xl mx-auto">
+          <img src={pictureUrl} className="max-w-sm rounded-lg shadow-2xl" />
+          <div className="space-y-4">
+            <p className="font-semibold">{brand}</p>
             <h1 className="text-5xl font-bold">{toyName}</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-            <button className="btn btn-primary">Get Started</button>
+            <p>{subCategory}</p>
+            <p className="py-6">{description}</p>
+            <p className="text-xl font-bold">${price}</p>
+            <div className="flex gap-10">
+              <p>Color: {color}</p>{" "}
+              <p>Available Quantity: {availableQuantity}</p>
+            </div>
+            <div className="space-x-3">
+              <button className="btn bg-pink-600 border-0">Buy Now</button>
+              <button className="btn bg-pink-100 btn-outline">
+                Add to Whitelist
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="md:max-w-5xl mx-auto py-5">
+          <h2 className="text-xl font-semibold py-5">Specification</h2>
+            <table className="table w-full  ">
+              <tbody>
+                <tr>
+                  <td>Name:</td>
+                  <td>{toyName}</td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td>{price}</td>
+                </tr>
+               
+                <tr>
+                  <td>Material</td>
+                  <td>{material}</td>
+                </tr>
+                <tr>
+                  <td>Width</td>
+                  <td>{weight}</td>
+                </tr>
+                <tr>
+                  <td>Age Range</td>
+                  <td>{ageRange}</td>
+                </tr>
+                <tr>
+                  <td>Category</td>
+                  <td>{category}</td>
+                </tr>
+                <tr>
+                  <td>Seller Name</td>
+                  <td>{sellerName}</td>
+                </tr>
+                <tr>
+                  <td>Country of Origin</td>
+                  <td>{countryOfOrigin}</td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td>{detailDescription}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -46,3 +94,14 @@ const ToyDetails = () => {
 };
 
 export default ToyDetails;
+// picture, toy name, seller name, seller email, price, rating, available quantity, and detail description
+
+// Picture URL of the toy,
+// Name,
+// seller name (if available from the logged in user)
+// seller email (info from the logged in user)
+// Sub-category ( For example: if the website is based on Educational and learning toys, the sub-categories can be Math Toys, Language Toys, and Science Toys.)
+// Price,
+// Rating,
+// Available quantity
+// Detail description

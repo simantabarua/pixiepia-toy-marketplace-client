@@ -12,50 +12,47 @@ const AllToys = () => {
   };
   return (
     <div>
-      <div className="flex justify-end p-5">
-        <Search onSearch={handleSearch} />
-      </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto px-2 md:px-24 py-10">
         {toys.length === 0 ? (
           <div>
             <h2 className="text-xl font-bold text-center p-5">No Data found</h2>
           </div>
         ) : (
-          <table className="table table-compact w-full">
+          <table className="table table-compact w-full text-center">
             <thead>
               <tr>
-                <th></th>
+                <th>  </th>
                 <th>Toy Name</th>
                 <th>Seller</th>
                 <th>Sub-category</th>
                 <th>Price</th>
                 <th>Available Quantity</th>
-                <th>Listed Date</th>
-                <th></th>
+              
+                <th>  <Search onSearch={handleSearch} /></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {toys.map(
                 ({
                   _id,
                   toyName,
                   price,
                   sellerName,
-                  subCategory,
+                  subcategory,
                   availableQuantity,
-                  releaseDate,
+                 
                 }) => (
                   <tr key={_id}>
                     <td></td>
-                    <td>{toyName}</td>
+                    <td className="text-left">{toyName}</td>
                     <td>{sellerName}</td>
-                    <td>{subCategory}</td>
+                    <td>{subcategory}</td>
                     <td>{price}</td>
                     <td>{availableQuantity}</td>
-                    <td>{releaseDate}</td>
+                   
                     <td>
                       <Link to={`/toydetails/${_id}`}>
-                        <button className="btn bg-pink-600 border-0">
+                        <button className="btn btn-sm bg-pink-600 border-0">
                           View Details
                         </button>
                       </Link>
