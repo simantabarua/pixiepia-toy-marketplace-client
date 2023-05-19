@@ -1,7 +1,5 @@
 const ShopByCategory = () => {
-  return (
-    <div>ShopByCategory</div>
-  );
+  return <div>ShopByCategory</div>;
 };
 
 export default ShopByCategory;

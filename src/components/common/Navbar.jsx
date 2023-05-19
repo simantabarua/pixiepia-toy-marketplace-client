@@ -4,6 +4,7 @@ import { FaBars } from "react-icons/fa";
 import { HiOutlineX } from "react-icons/hi";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
+import Search from "./Search";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { logOut, user } = useContext(AuthContext);
@@ -44,9 +45,10 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
-        <ul className="gap-2 lg:gap-5 menu-horizontal font-semibold ">
+        <ul className="gap-2 lg:gap-5 menu-horizontal items-center font-semibold ">
           {/* For desktop  */}
           {navLinks}
+          <Search/>
         </ul>
       </div>
       <div className="navbar-end">
