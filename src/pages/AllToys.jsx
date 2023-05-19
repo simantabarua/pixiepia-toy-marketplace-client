@@ -21,18 +21,21 @@ const AllToys = () => {
           <table className="table table-compact w-full text-center">
             <thead>
               <tr>
-                <th>  </th>
+                <th> </th>
                 <th>Toy Name</th>
                 <th>Seller</th>
                 <th>Sub-category</th>
                 <th>Price</th>
                 <th>Available Quantity</th>
-              
-                <th>  <Search onSearch={handleSearch} /></th>
+
+                <th>
+                  {" "}
+                  <Search onSearch={handleSearch} />
+                </th>
               </tr>
             </thead>
-            <tbody >
-              {toys.map(
+            <tbody>
+              {toys?.map(
                 ({
                   _id,
                   toyName,
@@ -40,7 +43,6 @@ const AllToys = () => {
                   sellerName,
                   subcategory,
                   availableQuantity,
-                 
                 }) => (
                   <tr key={_id}>
                     <td></td>
@@ -49,7 +51,7 @@ const AllToys = () => {
                     <td>{subcategory}</td>
                     <td>{price}</td>
                     <td>{availableQuantity}</td>
-                   
+
                     <td>
                       <Link to={`/toydetails/${_id}`}>
                         <button className="btn btn-sm bg-pink-600 border-0">

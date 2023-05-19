@@ -1,6 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
+import {
+  FaArrowAltCircleUp,
+  FaArrowDown,
+  FaArrowUp,
+  FaEdit,
+  FaEye,
+  FaTrash,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -15,6 +22,14 @@ const MyToys = () => {
         setToys(data);
       });
   }, [url]);
+
+  const handleSortByPrice = (sort) => {
+    fetch(`http://localhost:5000/sort_toys/${user?.email}?sort=${sort}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+      });
+  };
 
   console.log(toys);
   const handleDelete = (id) => {
@@ -56,26 +71,44 @@ const MyToys = () => {
               <th>Toy Name</th>
               <th>Seller</th>
               <th>Sub-category</th>
-              <th>Price</th>
+              <th>
+                Price <span>sort by:</span>
+                <button
+                  onClick={() => {
+                    handleSortByPrice("asc");
+                  }}
+                  className="btn btn-xs"
+                >
+                  <FaArrowUp />
+                </button>
+                <button
+                  onClick={() => {
+                    handleSortByPrice("desc");
+                  }}
+                  className="btn btn-xs"
+                >
+                  <FaArrowDown />{" "}
+                </button>
+              </th>
               <th>Available Quantity</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {toys.map(
+            {toys?.map(
               ({
                 _id,
                 toyName,
                 price,
                 sellerName,
-                subCategory,
+                subcategory,
                 availableQuantity,
               }) => (
                 <tr key={_id}>
                   <td></td>
                   <td>{toyName}</td>
                   <td>{sellerName}</td>
-                  <td>{subCategory}</td>
+                  <td>{subcategory}</td>
                   <td>{price}</td>
                   <td>{availableQuantity}</td>
                   <td className="space-x-5">
@@ -119,6 +152,12 @@ const MyToys = () => {
             )}
           </tbody>
         </table>
+      </div>
+      <div className="btn-group ">
+        <button className="btn">1</button>
+        <button className="btn btn-active">2</button>
+        <button className="btn">3</button>
+        <button className="btn">4</button>
       </div>
     </div>
   );

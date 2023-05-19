@@ -11,7 +11,7 @@ const Navbar = () => {
   const menuToggler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const navLinks = menuLinks.map(({ label, path }) => (
+  const navLinks = menuLinks?.map(({ label, path }) => (
     <li key={path}>
       <NavLink to={path}>{label}</NavLink>
     </li>
@@ -48,12 +48,12 @@ const Navbar = () => {
         <ul className="gap-2 lg:gap-5 menu-horizontal items-center font-semibold ">
           {/* For desktop  */}
           {navLinks}
-          <Search/>
+          <Search />
         </ul>
       </div>
       <div className="navbar-end">
         {user ? (
-          <Link onClick={handleLogout} >
+          <Link onClick={handleLogout}>
             <button className="btn bg-pink-600 border-0">Logout</button>
           </Link>
         ) : (

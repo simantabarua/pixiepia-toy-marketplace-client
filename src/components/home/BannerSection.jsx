@@ -20,7 +20,7 @@ const BannerSection = () => {
 
   return (
     <Swiper {...params}>
-      {toySlide.map((slide, index) => (
+      {toySlide?.map((slide, index) => (
         <SwiperSlide key={index}>
           <div
             className="hero h-96 md:h-[580px]"

@@ -37,7 +37,7 @@ const ShopByCategory = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 my-5 xl:grid-cols-3 gap-6 md:px-3 lg:px-6">
-          {toys.map((toy) => (
+          {toys?.map((toy) => (
             <ToyCard key={toy._id} toy={toy} />
           ))}
         </div>

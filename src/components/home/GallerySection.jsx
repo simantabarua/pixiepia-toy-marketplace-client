@@ -55,7 +55,7 @@ const GallerySection = () => {
         }}
         className=" absolute top-0 left-0 w-full h-full "
       >
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <SwiperSlide className="h-full" key={index}>
             <img className="w-72 h-72 object-cover" src={image} alt="" />
           </SwiperSlide>

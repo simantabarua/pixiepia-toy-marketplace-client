@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { options } from "../../utils/categoryOptions";
 
 const UpdateToyForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,  watch } = useForm();
   const { loading } = useContext(AuthContext);
   const toy = useLoaderData();
   const {
@@ -17,7 +18,6 @@ const UpdateToyForm = () => {
     price,
     availableQuantity,
     category,
-    subCategory,
     brand,
     material,
     color,
@@ -26,15 +26,13 @@ const UpdateToyForm = () => {
     pictureUrl,
     ageRange,
     detailDescription,
-    date,
   } = toy;
 
-  console.log(toy);
 
-  const handleAddToys = (data) => {
+  const handleUpdateToy = (data) => {
     console.log(data);
     fetch(`http://localhost:5000/toy/${_id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
@@ -44,7 +42,7 @@ const UpdateToyForm = () => {
       .then((result) => {
         if (result.modifiedCount > 0) {
           Swal.fire("Updated!", "Your file has been Updated.", "success");
-       }
+        }
       });
   };
   if (loading) {
@@ -52,7 +50,7 @@ const UpdateToyForm = () => {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit(handleAddToys)}>
+      <form onSubmit={handleSubmit(handleUpdateToy)}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 w-full md:max-w-7xl mx-auto px-5">
           <div className="form-control">
             <label className="label">
@@ -78,30 +76,52 @@ const UpdateToyForm = () => {
               className="input input-bordered"
             />
           </div>
+
           <div className="form-control">
             <label className="label">
               <span className="label-text">Category</span>
             </label>
-            <input
-              type="text"
+            <select
               {...register("category")}
+              className="select select-ghost w-full max-w-xs"
               defaultValue={category}
-              placeholder="Category"
-              className="input input-bordered"
-            />
+              required
+            >
+              <option value="" disabled>
+                Select Category
+              </option>
+              {options?.map((option, index) => (
+                <option key={index} defaultValue={category}>
+                  {option.category}
+                </option>
+              ))}
+            </select>
           </div>
+
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Sub-category</span>
+              <span className="label-text">Sub Category</span>
             </label>
-            <input
-              type="text"
-              {...register("subCategory")}
-              defaultValue={subCategory}
-              placeholder="Sub-category"
-              className="input input-bordered"
-            />
+            <select
+              {...register("subcategory", )}
+              className="select select-ghost w-full max-w-xs"
+              required
+            >
+              <option value="" disabled>
+                Select Sub Category
+              </option>
+              {options?.map(
+                (option) =>
+                  option.category === watch("category") &&
+                  option.subcategories?.map((subcat, subIndex) => (
+                    <option key={subIndex} >
+                      {subcat}
+                    </option>
+                  ))
+              )}
+            </select>
           </div>
+
           <div className="form-control">
             <label className="label">
               <span className="label-text">Description</span>
@@ -174,13 +194,12 @@ const UpdateToyForm = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Release Date</span>
+              <span className="label-text">Rating</span>
             </label>
             <input
-              type="date"
-              {...register("date")}
-              defaultValue={date}
-              placeholder="Release Date"
+              type="text"
+              {...register("rating")}
+              placeholder="Rating"
               className="input input-bordered"
             />
           </div>

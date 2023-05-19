@@ -68,7 +68,7 @@ const AddToyForm = () => {
             <option value="" disabled>
               Select Category
             </option>
-            {options.map((option, index) => (
+            {options?.map((option, index) => (
               <option key={index} value={option.category}>
                 {option.category}
               </option>
@@ -88,10 +88,10 @@ const AddToyForm = () => {
             <option value="" disabled>
               Select Sub Category
             </option>
-            {options.map(
+            {options?.map(
               (option) =>
                 option.category === watch("category") &&
-                option.subcategories.map((subcat, subIndex) => (
+                option.subcategories?.map((subcat, subIndex) => (
                   <option key={subIndex} value={subcat}>
                     {subcat}
                   </option>
@@ -99,6 +99,8 @@ const AddToyForm = () => {
             )}
           </select>
         </div>
+
+        
         <div className="form-control">
           <label className="label">
             <span className="label-text">Description</span>
