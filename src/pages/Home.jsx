@@ -4,7 +4,7 @@ import ShopByCategory from "../components/home/ShopByCategory";
 
 const Home = () => {
   return (
-    <div className="grid grid-cols-1 place-items-center bg-pink-50  h-screen">
+    <div >
       <BannerSection />
       <GallerySection />
       <ShopByCategory />
