@@ -23,7 +23,7 @@ const MyToys = () => {
           setIsLoading(false);
         })
         .catch((error) => {
-          console.log('Error fetching data:', error);
+          console.log("Error fetching data:", error);
           setIsLoading(false);
         });
     };
@@ -83,23 +83,26 @@ const MyToys = () => {
               <th>Seller</th>
               <th>Sub-category</th>
               <th>
-                Price <span>sort by:</span>
-                <button
-                  onClick={() => {
-                    handleSortByPrice("asc");
-                  }}
-                  className="btn btn-xs"
-                >
-                  <FaArrowUp />
-                </button>
-                <button
-                  onClick={() => {
-                    handleSortByPrice("desc");
-                  }}
-                  className="btn btn-xs"
-                >
-                  <FaArrowDown />{" "}
-                </button>
+                Price
+                <div>
+                  <span className="">sort by </span>
+                  <button
+                    onClick={() => {
+                      handleSortByPrice("asc");
+                    }}
+                    className="btn btn-ghost btn-xs"
+                  >
+                    <FaArrowUp />
+                  </button>
+                  <button
+                    onClick={() => {
+                      handleSortByPrice("desc");
+                    }}
+                    className="btn btn-ghost btn-xs"
+                  >
+                    <FaArrowDown />{" "}
+                  </button>
+                </div>
               </th>
               <th>Available Quantity</th>
               <th></th>
@@ -163,12 +166,6 @@ const MyToys = () => {
             )}
           </tbody>
         </table>
-      </div>
-      <div className="btn-group ">
-        <button className="btn">1</button>
-        <button className="btn btn-active">2</button>
-        <button className="btn">3</button>
-        <button className="btn">4</button>
       </div>
     </div>
   );

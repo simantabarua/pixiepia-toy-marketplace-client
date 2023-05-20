@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const usePageTitle = (title) => {
   useEffect(() => {
-    document.title = `${title} - Pixiepia`;
+    document.title = `${title} | Pixiepia`;
   }, [title]);
 };
 

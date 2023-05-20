@@ -11,14 +11,18 @@ const ToyCard = ({ toy }) => {
     if (!user) {
       Swal.fire({
         icon: "error",
-        title: "You need login fist to view Details",
-      });
+        title:"You need login fist to view Details"})
     }
   };
 
   const { _id, toyName, price, subcategory, rating, pictureUrl } = toy;
   return (
-    <div className="card-compact  w-full h-full  md:w-96 md:h-[29rem] bg-pink-100 shadow-xl rounded-xl  md:p-4">
+    <div
+      className="card-compact  w-full h-full  md:w-96 md:h-[29rem] bg-pink-100 shadow-xl rounded-xl  md:p-4 "
+      data-aos="zoom-in-up"
+      data-aos-duration="800"
+      
+    >
       <figure>
         {pictureUrl ? (
           <img
@@ -41,16 +45,15 @@ const ToyCard = ({ toy }) => {
           <span>Rating: {rating}</span>
         </div>
         <div className="card-actions">
-          <Link to={`/toydetails/${_id}`}>
-            <button
-              onClick={() => {
-                handleViewDetails();
-              }}
-              className="btn btn-sm bg-pink-600 border-0"
-            >
-              View Details
-            </button>
-          </Link>
+          
+          <Link to={`/toydetails/${_id}`}><button
+            onClick={() => {
+              handleViewDetails();
+            }}
+            className="btn btn-sm bg-pink-600 border-0"
+          >
+            View Details
+          </button></Link>
         </div>
       </div>
     </div>

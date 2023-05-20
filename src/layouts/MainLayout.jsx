@@ -14,7 +14,7 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar />
-      <main className="h-full bg-pink-50">
+      <main className="min-h-screen bg-pink-50">
         <Outlet />
       </main>
       <Footer />

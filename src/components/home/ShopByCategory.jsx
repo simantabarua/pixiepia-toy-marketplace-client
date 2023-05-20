@@ -45,7 +45,9 @@ const ShopByCategory = () => {
           "Explore our Wide Range of Categories and Find the Perfect Toy for Every Child"
         }
       />
-      <CategoryNav handleCategorySelect={handleCategorySelect} />
+      <CategoryNav
+        handleCategorySelect={handleCategorySelect}
+      />
       {toys.length === 0 ? (
         <div className="h-64 flex items-center justify-center">
           <p className="text-2xl  text-pink-700">No Toys found</p>
