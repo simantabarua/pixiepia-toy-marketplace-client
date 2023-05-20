@@ -1,7 +1,9 @@
 import { CiImageOff } from "react-icons/ci";
 import { useLoaderData } from "react-router-dom";
+import usePageTitle from "../hooks/useTitle";
 
 const ToyDetails = () => {
+  usePageTitle('Toy Details')
   const toy = useLoaderData();
   const {
     sellerName,

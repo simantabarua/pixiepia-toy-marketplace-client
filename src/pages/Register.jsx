@@ -5,8 +5,10 @@ import { updateProfile } from "firebase/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import usePageTitle from "../hooks/useTitle";
 
 const Register = () => {
+  usePageTitle("Register")
   const { createUserWithEmail, auth } = useContext(AuthContext);
   const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;

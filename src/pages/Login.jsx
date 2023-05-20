@@ -5,8 +5,10 @@ import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthProvider";
+import usePageTitle from "../hooks/useTitle";
 
 const Login = () => {
+  usePageTitle('Login')
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";

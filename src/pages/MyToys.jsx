@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import {
-  FaArrowAltCircleUp,
   FaArrowDown,
   FaArrowUp,
   FaEdit,
@@ -10,8 +9,10 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import usePageTitle from "../hooks/useTitle";
 
 const MyToys = () => {
+  usePageTitle('My Toys')
   const { user, loading } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const url = `http://localhost:5000/mytoys/${user?.email}`;

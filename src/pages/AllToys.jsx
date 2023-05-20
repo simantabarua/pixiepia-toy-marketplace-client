@@ -1,18 +1,44 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Search from "../components/common/Search";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import usePageTitle from "../hooks/useTitle";
 
 const AllToys = () => {
-  const toysData = useLoaderData();
-  const [toys, setToys] = useState(toysData);
+  usePageTitle("All Toys");
+  const [totalPages, setTotalPages] = useState(0);
+  const [selectedPage, setSelectedPage] = useState(0);
+  const [toys, setToys] = useState([]);
 
   const handleSearch = (result) => {
     console.log("Search result:", result);
     setToys(result);
   };
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/page`)
+      .then((response) => response.json())
+      .then((data) => {
+        const { results, totalPages } = data;
+        setTotalPages(totalPages);
+        setToys(results);
+      });
+  }, []);
+
+  const handlePagination = (pageNumber) => {
+    setSelectedPage(pageNumber - 1);
+    fetch(`http://localhost:5000/page?page=${pageNumber}}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const { results } = data;
+        setToys(results);
+        console.log(results);
+      });
+  };
+
+  const buttons = Array.from(Array(totalPages).keys());
   return (
     <div>
-      <div className="overflow-x-auto px-2 md:px-24 py-10">
+      <div className="overflow-x-auto px-2 md:px-24 pt-10">
         {toys.length === 0 ? (
           <div>
             <h2 className="text-xl font-bold text-center p-5">No Data found</h2>
@@ -29,7 +55,6 @@ const AllToys = () => {
                 <th>Available Quantity</th>
 
                 <th>
-                  {" "}
                   <Search onSearch={handleSearch} />
                 </th>
               </tr>
@@ -65,6 +90,21 @@ const AllToys = () => {
             </tbody>
           </table>
         )}
+      </div>
+      <div>
+        <div className="btn-group flex justify-center my-2">
+          {buttons.map((index) => (
+            <button
+              onClick={() => {
+                handlePagination(index + 1);
+              }}
+              className={`btn  ${index === selectedPage ? "bg-pink-600" : ""}`}
+              key={index}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
