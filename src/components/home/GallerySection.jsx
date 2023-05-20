@@ -56,7 +56,8 @@ const GallerySection = () => {
       >
         {images?.map((image, index) => (
           <SwiperSlide className="h-full" key={index}>
-            <div className="relative overflow-hidden rounded-xl hover shadow-lg">
+            <div className="relative overflow-hidden rounded-xl hover shadow-lg" data-aos="zoom-in-up"
+    data-aos-duration="800">
               <img
                 src={image}
                 className="h-64 w-fit object-left-top object-cover md:w-96 transition-transform duration-1000 ease-in-out transform scale-110 hover:scale-125"

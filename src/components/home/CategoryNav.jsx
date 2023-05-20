@@ -1,9 +1,12 @@
 import { options } from "../../utils/categoryOptions";
-console.log(options);
 
 const CategoryNav = ({ handleCategorySelect }) => {
   return (
-    <div className="navbar bg-pink-200">
+    <div
+      className="navbar bg-pink-200"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -40,7 +43,7 @@ const CategoryNav = ({ handleCategorySelect }) => {
                     <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                   </svg>
                 </a>
-                <ul className="z-0 menu menu-compact dropdown-content  p-2 shadow bg-base-100 rounded-box w-52">
+                <ul className="menu menu-compact dropdown-content  p-2 shadow bg-base-100 rounded-box w-52">
                   {option.subcategories?.map((subcategory, index) => (
                     <li key={index}>
                       <a

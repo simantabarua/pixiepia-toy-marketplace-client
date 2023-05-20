@@ -23,7 +23,8 @@ const PromoBanner = () => {
           <div
             key={index}
             className="relative h-52 p-5 flex justify-end items-center my-2 overflow-hidden rounded-lg cursor-pointer"
-          >
+            data-aos="fade-up"
+            data-aos-duration="1000"    >
             <img
               className="absolute inset-0 w-full h-full object-fit object-cover transition-transform duration-1000 ease-in-out transform hover:scale-110"
               src={banner.imageUrl}

@@ -2,18 +2,30 @@ import { useEffect, useState } from "react";
 import SectionHeader from "../common/SectionHeader";
 import CategoryNav from "./CategoryNav";
 import ToyCard from "./ToyCard";
+import Loading from "../common/Loading";
 
 const ShopByCategory = () => {
   const [toys, setToys] = useState([]);
-  useEffect(() => {
-    fetch(`https://server-pixiepia.vercel.app/toys`)
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        setToys(result);
-      });
-  }, []);
+  const [loading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchData = () => {
+      setIsLoading(true);
+      fetch(`https://server-pixiepia.vercel.app/toys`)
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          setToys(result);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log("Error fetching data:", error);
+          setIsLoading(false);
+        });
+    };
+
+    fetchData();
+  }, []);
   const handleCategorySelect = (category) => {
     fetch(`https://server-pixiepia.vercel.app/search/${category}`)
       .then((res) => res.json())
@@ -22,8 +34,11 @@ const ShopByCategory = () => {
         setToys(result);
       });
   };
+  if (loading) {
+    return <Loading />;
+  }
   return (
-    <div>
+    <>
       <SectionHeader
         title={"Discover the Perfect Toy for Every Adventure"}
         subtitle={
@@ -42,7 +57,7 @@ const ShopByCategory = () => {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

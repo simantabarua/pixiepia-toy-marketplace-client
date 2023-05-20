@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/toydetails/:id",
-        element: <ToyDetails />,
+        element: <PrivateRoute><ToyDetails /></PrivateRoute>,
         loader: ({ params }) =>
           fetch(`https://server-pixiepia.vercel.app/toy/${params.id}`),
       },
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/mytoys",
-        element: <MyToys />,
+        element: <PrivateRoute><MyToys /></PrivateRoute>,
       },
       {
         path: "/login",

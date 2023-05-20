@@ -277,7 +277,7 @@ const UpdateToyForm = () => {
 
         <div className="flex justify-center my-4">
           <button type="submit" className="btn bg-pink-600 w-96">
-            Add Toy
+            Update Toy
           </button>
         </div>
       </form>

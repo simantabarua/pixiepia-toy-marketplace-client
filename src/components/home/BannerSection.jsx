@@ -5,7 +5,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import toySlide from "../../utils/toySlideData";
 
+
 const BannerSection = () => {
+ 
+
   const params = {
     pagination: {
       clickable: true,
@@ -31,10 +34,20 @@ const BannerSection = () => {
             <div className="hero-overlay opacity-50"></div>
             <div className="hero-content text-center  text-white">
               <div className="max-w-xl space-y-5">
-                <h1 className="text-xl sm:text-3xl md:text-5xl font-medium md:font-bold">
+                <h1
+                  className="text-xl sm:text-3xl md:text-5xl font-medium md:font-bold"
+                  data-aos="zoom-in-up"
+                  data-aos-duration="800"
+                >
                   {slide.title}
                 </h1>
-                <p className="md:font-bold text-xl">{slide.description}</p>
+                <p
+                  className="md:font-bold text-xl"
+                  data-aos="zoom-in-up"
+                  data-aos-duration="800"
+                >
+                  {slide.description}
+                </p>
               </div>
             </div>
           </div>

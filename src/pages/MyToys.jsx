@@ -8,15 +8,27 @@ import Loading from "../components/common/Loading";
 
 const MyToys = () => {
   usePageTitle("My Toys");
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [loading, setIsLoading] = useState(true);
   const [toys, setToys] = useState([]);
   const url = `https://server-pixiepia.vercel.app/mytoys/${user?.email}`;
+
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setToys(data);
-      });
+    const fetchData = () => {
+      setIsLoading(true);
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          setToys(data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log('Error fetching data:', error);
+          setIsLoading(false);
+        });
+    };
+
+    fetchData();
   }, [url]);
 
   const handleSortByPrice = (sort) => {
@@ -56,6 +68,7 @@ const MyToys = () => {
       }
     });
   };
+
   if (loading) {
     return <Loading />;
   }

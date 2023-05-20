@@ -34,6 +34,13 @@ const Navbar = () => {
             // for mobile
             <ul className="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
               {navLinks}
+              {user && (
+                <>
+                  {" "}
+                  <NavLink to="/addtoy">Add Toy</NavLink>{" "}
+                  <NavLink to="/mytoys">My Toy</NavLink>
+                </>
+              )}
             </ul>
           )}
         </div>
@@ -48,6 +55,13 @@ const Navbar = () => {
         <ul className="gap-2 lg:gap-5 menu-horizontal items-center font-semibold ">
           {/* For desktop  */}
           {navLinks}
+          {user && (
+            <>
+              {" "}
+              <NavLink to="/addtoy">Add Toy</NavLink>{" "}
+              <NavLink to="/mytoys">My Toy</NavLink>
+            </>
+          )}
           <Search />
         </ul>
       </div>

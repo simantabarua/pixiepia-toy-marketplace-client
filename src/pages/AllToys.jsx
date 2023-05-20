@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import Search from "../components/common/Search";
 import { useEffect, useState } from "react";
 import usePageTitle from "../hooks/useTitle";
+import Loading from "../components/common/Loading";
 
 const AllToys = () => {
   usePageTitle("All Toys");
   const [totalPages, setTotalPages] = useState(0);
   const [selectedPage, setSelectedPage] = useState(0);
+  const [loading, setIsLoading] = useState(true);
+
   const [toys, setToys] = useState([]);
 
   const handleSearch = (result) => {
@@ -15,13 +18,23 @@ const AllToys = () => {
   };
 
   useEffect(() => {
-    fetch(`https://server-pixiepia.vercel.app/page`)
-      .then((response) => response.json())
-      .then((data) => {
-        const { results, totalPages } = data;
-        setTotalPages(totalPages);
-        setToys(results);
-      });
+    const fetchData = () => {
+      setIsLoading(true);
+      fetch(`https://server-pixiepia.vercel.app/page`)
+        .then((response) => response.json())
+        .then((data) => {
+          const { results, totalPages } = data;
+          setTotalPages(totalPages);
+          setToys(results);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log('Error fetching data:', error);
+          setIsLoading(false);
+        });
+    };
+
+    fetchData();
   }, []);
 
   const handlePagination = (pageNumber) => {
@@ -36,6 +49,10 @@ const AllToys = () => {
   };
 
   const buttons = Array.from(Array(totalPages).keys());
+
+  if (loading) {
+    return <Loading />;
+  } 
   return (
     <div>
       <div className="overflow-x-auto px-2 md:px-24 pt-10">
