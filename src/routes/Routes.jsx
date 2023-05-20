@@ -16,6 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
@@ -58,10 +59,6 @@ const router = createBrowserRouter([
         path: "/update_toy/:id",
         element: <UpdateToy />,
         loader: ({ params }) => fetch(`http://localhost:5000/toy/${params.id}`),
-      },
-      {
-        path: "*",
-        element: <NotFound />,
       },
     ],
   },
