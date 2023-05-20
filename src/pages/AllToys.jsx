@@ -15,7 +15,7 @@ const AllToys = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/page`)
+    fetch(`https://server-pixiepia.vercel.app/page`)
       .then((response) => response.json())
       .then((data) => {
         const { results, totalPages } = data;
@@ -26,7 +26,7 @@ const AllToys = () => {
 
   const handlePagination = (pageNumber) => {
     setSelectedPage(pageNumber - 1);
-    fetch(`http://localhost:5000/page?page=${pageNumber}}`)
+    fetch(`https://server-pixiepia.vercel.app/page?page=${pageNumber}}`)
       .then((response) => response.json())
       .then((data) => {
         const { results } = data;

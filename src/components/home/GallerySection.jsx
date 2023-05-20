@@ -25,7 +25,7 @@ const GallerySection = () => {
   return (
     <div>
       <SectionHeader
-        title={"Unleash Your Imagination with our exciting new toy!"}
+        title={"Best From Gallery"}
         subtitle={
           "Explore a World of Endless Joy, Adventure, and Possibilities"
         }
@@ -45,18 +45,31 @@ const GallerySection = () => {
           },
           768: {
             slidesPerView: 3,
-            spaceBetween: 0,
+            spaceBetween: 20,
           },
           1024: {
             slidesPerView: 5,
-            spaceBetween: 0,
+            spaceBetween: 20,
           },
         }}
         className=" absolute top-0 left-0 w-full h-full "
       >
         {images?.map((image, index) => (
           <SwiperSlide className="h-full" key={index}>
-            <img className="w-72 h-72 object-cover" src={image} alt="" />
+            <div className="relative overflow-hidden rounded-xl hover shadow-lg">
+              <img
+                src={image}
+                className="h-64 w-fit object-left-top object-cover md:w-96 transition-transform duration-1000 ease-in-out transform scale-110 hover:scale-125"
+                loading="lazy"
+              />
+          
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+              <button className="btn bg-pink-500 border-none btn-sm flex it">
+                  Shop Now
+                </button>
+               </div>
+         
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -7,7 +7,7 @@ import { options } from "../../utils/categoryOptions";
 import Loading from "../common/Loading";
 
 const UpdateToyForm = () => {
-  const { register, handleSubmit,  watch } = useForm();
+  const { register, handleSubmit, watch } = useForm();
   const { loading } = useContext(AuthContext);
   const toy = useLoaderData();
   const {
@@ -29,10 +29,9 @@ const UpdateToyForm = () => {
     detailDescription,
   } = toy;
 
-
   const handleUpdateToy = (data) => {
     console.log(data);
-    fetch(`http://localhost:5000/toy/${_id}`, {
+    fetch(`https://server-pixiepia.vercel.app/toy/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -47,7 +46,7 @@ const UpdateToyForm = () => {
       });
   };
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
   return (
     <div>
@@ -104,7 +103,7 @@ const UpdateToyForm = () => {
               <span className="label-text">Sub Category</span>
             </label>
             <select
-              {...register("subcategory", )}
+              {...register("subcategory")}
               className="select select-ghost w-full max-w-xs"
               required
             >
@@ -115,9 +114,7 @@ const UpdateToyForm = () => {
                 (option) =>
                   option.category === watch("category") &&
                   option.subcategories?.map((subcat, subIndex) => (
-                    <option key={subIndex} >
-                      {subcat}
-                    </option>
+                    <option key={subIndex}>{subcat}</option>
                   ))
               )}
             </select>

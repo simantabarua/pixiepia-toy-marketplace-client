@@ -9,7 +9,7 @@ const Search = ({ onSearch }) => {
   } = useForm();
   const handleSearch = (data) => {
     console.log(data.search);
-    fetch(`http://localhost:5000/search/${data.search}`)
+    fetch(`https://server-pixiepia.vercel.app/search/${data.search}`)
       .then((res) => res.json())
       .then((result) => {
         console.log(result);

@@ -6,7 +6,7 @@ import ToyCard from "./ToyCard";
 const ShopByCategory = () => {
   const [toys, setToys] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/toys`)
+    fetch(`https://server-pixiepia.vercel.app/toys`)
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
@@ -15,7 +15,7 @@ const ShopByCategory = () => {
   }, []);
 
   const handleCategorySelect = (category) => {
-    fetch(`http://localhost:5000/search/${category}`)
+    fetch(`https://server-pixiepia.vercel.app/search/${category}`)
       .then((res) => res.json())
       .then((result) => {
         console.log(result);

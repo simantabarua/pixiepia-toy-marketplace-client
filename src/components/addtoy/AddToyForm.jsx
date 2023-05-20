@@ -11,7 +11,7 @@ const AddToyForm = () => {
 
   const handleAddToys = (data) => {
     // Perform your logic to submit the form data
-    fetch("http://localhost:5000/toys", {
+    fetch("https://server-pixiepia.vercel.app/toys", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -28,7 +28,7 @@ const AddToyForm = () => {
       });
   };
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
   return (
     <form onSubmit={handleSubmit(handleAddToys)}>
@@ -101,7 +101,6 @@ const AddToyForm = () => {
           </select>
         </div>
 
-        
         <div className="form-control">
           <label className="label">
             <span className="label-text">Description</span>

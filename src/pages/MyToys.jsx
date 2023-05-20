@@ -1,22 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
-import {
-  FaArrowDown,
-  FaArrowUp,
-  FaEdit,
-  FaEye,
-  FaTrash,
-} from "react-icons/fa";
+import { FaArrowDown, FaArrowUp, FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import usePageTitle from "../hooks/useTitle";
 import Loading from "../components/common/Loading";
 
 const MyToys = () => {
-  usePageTitle('My Toys')
+  usePageTitle("My Toys");
   const { user, loading } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
-  const url = `http://localhost:5000/mytoys/${user?.email}`;
+  const url = `https://server-pixiepia.vercel.app/mytoys/${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -26,7 +20,9 @@ const MyToys = () => {
   }, [url]);
 
   const handleSortByPrice = (sort) => {
-    fetch(`http://localhost:5000/sort_toys/${user?.email}?sort=${sort}`)
+    fetch(
+      `https://server-pixiepia.vercel.app/sort_toys/${user?.email}?sort=${sort}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
@@ -45,7 +41,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/toy/${id}`, {
+        fetch(`https://server-pixiepia.vercel.app/toy/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -61,7 +57,7 @@ const MyToys = () => {
     });
   };
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
   return (
     <div>
