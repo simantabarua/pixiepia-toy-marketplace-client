@@ -28,13 +28,13 @@ const BannerSection = () => {
               backgroundImage: `url(${slide.image})`,
             }}
           >
-            <div className="hero-overlay"></div>
+            <div className="hero-overlay opacity-50"></div>
             <div className="hero-content text-center  text-white">
               <div className="max-w-xl space-y-5">
                 <h1 className="text-xl sm:text-3xl md:text-5xl font-medium md:font-bold">
                   {slide.title}
                 </h1>
-                <p className="md:font-bold">{slide.description}</p>
+                <p className="md:font-bold text-xl">{slide.description}</p>
               </div>
             </div>
           </div>

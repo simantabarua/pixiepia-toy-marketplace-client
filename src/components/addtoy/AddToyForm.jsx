@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
 import { options } from "../../utils/categoryOptions";
+import Loading from "../common/Loading";
 
 const AddToyForm = () => {
   const { register, handleSubmit, watch } = useForm();
@@ -27,7 +28,7 @@ const AddToyForm = () => {
       });
   };
   if (loading) {
-    return <div>Loading</div>;
+    return <Loading/>;
   }
   return (
     <form onSubmit={handleSubmit(handleAddToys)}>

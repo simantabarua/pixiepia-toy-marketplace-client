@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ToyCard = ({ toy }) => {
   const { _id, toyName, price, subcategory, rating, pictureUrl } = toy;
   return (
-    <div className="card-compact  w-full h-full  md:w-96 md:h-[28rem] bg-pink-100 shadow-xl rounded-xl  md:p-4 ">
+    <div className="card-compact  w-full h-full  md:w-96 md:h-[29rem] bg-pink-100 shadow-xl rounded-xl  md:p-4 ">
       <figure>
         {pictureUrl ? (
           <img

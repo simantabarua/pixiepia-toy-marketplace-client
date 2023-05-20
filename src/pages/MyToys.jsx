@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import usePageTitle from "../hooks/useTitle";
+import Loading from "../components/common/Loading";
 
 const MyToys = () => {
   usePageTitle('My Toys')
@@ -60,7 +61,7 @@ const MyToys = () => {
     });
   };
   if (loading) {
-    return <div>Loading</div>;
+    return <Loading/>;
   }
   return (
     <div>

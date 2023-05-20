@@ -1,15 +1,17 @@
 import BannerSection from "../components/home/BannerSection";
 import GallerySection from "../components/home/GallerySection";
+import OurServices from "../components/home/OurServices";
 import ShopByCategory from "../components/home/ShopByCategory";
 import usePageTitle from "../hooks/useTitle";
 
 const Home = () => {
-  usePageTitle('Home')
+  usePageTitle("Home");
   return (
-    <div >
+    <div>
       <BannerSection />
       <GallerySection />
       <ShopByCategory />
+      <OurServices />
     </div>
   );
 };

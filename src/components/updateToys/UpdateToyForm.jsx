@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { options } from "../../utils/categoryOptions";
+import Loading from "../common/Loading";
 
 const UpdateToyForm = () => {
   const { register, handleSubmit,  watch } = useForm();
@@ -46,7 +47,7 @@ const UpdateToyForm = () => {
       });
   };
   if (loading) {
-    return <div>Loading</div>;
+    return <Loading/>;
   }
   return (
     <div>
