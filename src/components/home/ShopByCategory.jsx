@@ -26,14 +26,14 @@ const ShopByCategory = () => {
 
     fetchData();
   }, []);
-  
+
   const handleCategorySelect = (category) => {
     setIsLoading(true);
-    fetch(`https://server-pixiepia.vercel.app/search/${category}`)
+    fetch(`https://server-pixiepia.vercel.app/category/${category}`)
       .then((res) => res.json())
       .then((result) => {
         setToys(result);
-        setIsLoading(false)
+        setIsLoading(false);
       });
   };
   if (loading) {
@@ -60,11 +60,13 @@ const ShopByCategory = () => {
         </div>
       )}
       <div className="flex items-center justify-center py-5">
-        <Link to="/shop">
-          <button className="btn btn-secondary animate-bounce ">
-            See all toys
-          </button>
-        </Link>
+        {toys.length !== 0 && (
+          <Link to="/shop">
+            <button className="btn btn-secondary animate-bounce ">
+              See all toys
+            </button>
+          </Link>
+        )}
       </div>
     </>
   );

@@ -83,7 +83,7 @@ const UpdateToyForm = () => {
             </label>
             <select
               {...register("category")}
-              className="select select-ghost w-full max-w-xs"
+              className="select select-ghost w-full max-w-xs input-bordered"
               defaultValue={category}
               required
             >
@@ -104,7 +104,7 @@ const UpdateToyForm = () => {
             </label>
             <select
               {...register("subcategory")}
-              className="select select-ghost w-full max-w-xs"
+              className="select select-ghost w-full max-w-xs input-bordered"
               required
             >
               <option value="" disabled>

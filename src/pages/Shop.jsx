@@ -14,9 +14,7 @@ const Shop = () => {
   const [selectedPage, setSelectedPage] = useState(0);
   const [loading, setIsLoading] = useState(true);
   const { register, handleSubmit } = useForm();
-
   const [toys, setToys] = useState([]);
-
 
   useEffect(() => {
     const fetchData = () => {
@@ -26,29 +24,29 @@ const Shop = () => {
         .then((data) => {
           const { results, totalPages } = data;
           setTotalPages(totalPages);
-          setToys(results);
           setIsLoading(false);
+          setToys(results);
         })
         .catch((error) => {
           console.log("Error fetching data:", error);
           setIsLoading(false);
         });
     };
-
     fetchData();
   }, []);
 
   const handlePagination = (pageNumber) => {
-    setIsLoading(true)
+    setIsLoading(true);
     setSelectedPage(pageNumber - 1);
     fetch(`https://server-pixiepia.vercel.app/page?page=${pageNumber}}`)
       .then((response) => response.json())
       .then((data) => {
         const { results } = data;
+        setIsLoading(false);
         setToys(results);
-        setIsLoading(false)
       });
   };
+
   const handleFilterButtonClick = () => {
     setShowSidebar(!showSidebar);
   };
@@ -62,7 +60,7 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
-        setIsLoading(false)
+        setIsLoading(false);
       });
   };
 
@@ -72,7 +70,7 @@ const Shop = () => {
       .then((res) => res.json())
       .then((result) => {
         setToys(result);
-        setIsLoading(false)
+        setIsLoading(false);
       });
   };
 
@@ -94,7 +92,6 @@ const Shop = () => {
       </div>
 
       <main className="flex-grow  place-items-center grid grid-cols-1 lg:grid-cols-12 relative">
-        
         <div
           className={`bg-gray-900 bg-opacity-70 lg:bg-opacity-0 h-full ${
             showSidebar ? "md:block" : "hidden lg:block"
@@ -132,9 +129,10 @@ const Shop = () => {
         </div>
 
         <div className="md:col-span-10">
-        <p className="text-2xl font-bold text-center my-5">Toy Found { toys.length}</p>
+          <p className="text-2xl font-bold text-center my-5">
+            Toy Found {toys.length}
+          </p>
           <div className="flex flex-wrap items-center justify-center   my-5  gap-6 px-3 lg:px-6">
-            
             {toys.map((toy) => (
               <ToyCard key={toy._id} toy={toy} />
             ))}
@@ -150,7 +148,7 @@ const Shop = () => {
                     index === selectedPage ? "bg-pink-600" : ""
                   }`}
                   key={index}
-                  >
+                >
                   {index + 1}
                 </button>
               ))}
