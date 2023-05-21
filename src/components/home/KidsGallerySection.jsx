@@ -1,8 +1,6 @@
 import SectionHeader from "../common/SectionHeader";
 
-
 const KidsGallerySection = () => {
- 
   const images = [
     "https://i.ibb.co/Khk0Gqz/4.webp",
     "https://i.ibb.co/DrPF6qF/6.webp",
@@ -14,16 +12,22 @@ const KidsGallerySection = () => {
 
   return (
     <div>
-      <SectionHeader title={"Kids Zone"} />
+      <SectionHeader
+        title={"Kids Zone"}
+        subtitle={"Pixiepia Where Dreams Become Reality!"}
+      />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {images.map((imageUrl, index) => (
-          <div key={index} className="relative overflow-hidden cursor-pointer" data-aos="zoom-in-up"
-          data-aos-duration="800">
+          <div
+            key={index}
+            className="relative overflow-hidden cursor-pointer"
+            data-aos="zoom-in-up"
+            data-aos-duration="800"
+          >
             <img
               src={imageUrl}
               alt={`Image ${index + 1}`}
               className="w-full h-auto object-cover transition-transform duration-1000 ease-in-out transform hover:scale-110"
-             
             />
           </div>
         ))}

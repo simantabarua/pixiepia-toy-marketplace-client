@@ -27,7 +27,7 @@ const ToyCard = ({ toy }) => {
         {pictureUrl ? (
           <img
             src={pictureUrl}
-            className="h-64 w-fit object-left-top object-cover  md:w-96 rounded-lg"
+            className="h-64 w-full object-left-top object-cover   md:w-96 rounded-lg"
             loading="lazy"
           />
         ) : (

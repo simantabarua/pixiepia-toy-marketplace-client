@@ -3,7 +3,7 @@ import { options } from "../../utils/categoryOptions";
 const CategoryNav = ({ handleCategorySelect }) => {
   return (
     <div
-      className="navbar bg-base-100 z-10"
+      className="navbar bg-pink-100 z-10"
      
     >
       <div className="navbar-start">

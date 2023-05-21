@@ -1,4 +1,4 @@
-import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,12 +9,12 @@ import Lottie from "lottie-react";
 import login from "./../../public/login.json";
 
 const Login = () => {
-  usePageTitle('Login')
+  usePageTitle("Login");
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  const {signInUser, googleLogin} = useContext(AuthContext)
+  const { signInUser, googleLogin } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -63,30 +63,30 @@ const Login = () => {
   };
 
   // google login
-  const handleGoogleSignIn = () => { 
+  const handleGoogleSignIn = () => {
     googleLogin()
-    .then(() => {
-      Swal.fire({
-        icon: "success",
-        title: "Sign in success",
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Sign in success",
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          html: `<span style="color:red">${error.message}</span>`,
+        });
       });
-      navigate(from, { replace: true });
-    })
-    .catch((error) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        html: `<span style="color:red">${error.message}</span>`,
-      });
-    });
-   }
+  };
 
   return (
     <>
       <div className="h-full flex flex-col items-center justify-center bg-pink-50 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 card">
           <div>
-          <Lottie className="h-32" animationData={login} />
+            <Lottie className="h-32" animationData={login} />
             <h2 className="mt-6 text-center text-md md:text-2xl font-extrabold">
               Log in to your account
             </h2>
@@ -157,16 +157,25 @@ const Login = () => {
               </button>
             </div>
           </form>
-        
+
           <button
             onClick={handleGoogleSignIn}
             className="btn btn-outline  w-full"
           >
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"  className="w-6 h-6 mx-2" /> Login With Google
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              className="w-6 h-6 mx-2"
+            />{" "}
+            Login With Google
           </button>
 
           <div>
-            <h2>Don&apos;t have an account? <Link className="btn-link" to="/register">Click here to Register</Link></h2>
+            <h2>
+              Don&apos;t have an account?{" "}
+              <Link className="btn-link" to="/register">
+                Click here to Register
+              </Link>
+            </h2>
           </div>
         </div>
       </div>
