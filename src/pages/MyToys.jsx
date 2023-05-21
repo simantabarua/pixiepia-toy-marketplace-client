@@ -72,99 +72,107 @@ const MyToys = () => {
   }
   return (
     <div>
-      <div className="overflow-x-auto">
-        <table className="table table-compact w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Toy Name</th>
-              <th>Seller</th>
-              <th>Sub-category</th>
-              <th>
-                Price
-                <div>
-                  <span className="">sort by </span>
-                  <button
-                    onClick={() => {
-                      handleSortByPrice("asc");
-                    }}
-                    className="btn btn-ghost btn-xs"
-                  >
-                    <FaArrowUp />
-                  </button>
-                  <button
-                    onClick={() => {
-                      handleSortByPrice("desc");
-                    }}
-                    className="btn btn-ghost btn-xs"
-                  >
-                    <FaArrowDown />{" "}
-                  </button>
-                </div>
-              </th>
-              <th>Available Quantity</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {toys?.map(
-              ({
-                _id,
-                toyName,
-                price,
-                sellerName,
-                subcategory,
-                availableQuantity,
-              }) => (
-                <tr key={_id}>
-                  <td></td>
-                  <td>{toyName}</td>
-                  <td>{sellerName}</td>
-                  <td>{subcategory}</td>
-                  <td>{price}</td>
-                  <td>{availableQuantity}</td>
-                  <td className="space-x-5">
-                    <div
-                      className="tooltip hover:tooltip-open tooltip-top"
-                      data-tip="View Detail"
+      {toys.length === 0 ? (
+        <div className="h-64 flex items-center justify-center">
+          <p className="text-2xl  text-pink-700">
+            Hmm.. Looks like you haven&apos; t added anything.
+          </p>
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="table table-compact w-full">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Toy Name</th>
+                <th>Seller</th>
+                <th>Sub-category</th>
+                <th>
+                  Price
+                  <div>
+                    <span className="">sort by </span>
+                    <button
+                      onClick={() => {
+                        handleSortByPrice("asc");
+                      }}
+                      className="btn btn-ghost btn-xs"
                     >
-                      <Link to={`/toydetails/${_id}`}>
-                        {" "}
-                        <button className="btn btn-circle bg-green-500 border-0">
-                          <FaEye />
-                        </button>{" "}
-                      </Link>
-                    </div>
-                    <div
-                      className="tooltip hover:tooltip-open tooltip-top"
-                      data-tip="Update"
+                      <FaArrowUp />
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleSortByPrice("desc");
+                      }}
+                      className="btn btn-ghost btn-xs"
                     >
-                      <Link to={`/update_toy/${_id}`}>
-                        <button className="btn btn-circle bg-yellow-500 border-0">
-                          <FaEdit />
-                        </button>
-                      </Link>
-                    </div>
-                    <div
-                      className="tooltip hover:tooltip-open tooltip-top"
-                      data-tip="Delete"
-                    >
-                      <button
-                        onClick={() => {
-                          handleDelete(_id);
-                        }}
-                        className="btn btn-circle bg-red-500 border-0"
+                      <FaArrowDown />{" "}
+                    </button>
+                  </div>
+                </th>
+                <th>Available Quantity</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {toys?.map(
+                ({
+                  _id,
+                  toyName,
+                  price,
+                  sellerName,
+                  subcategory,
+                  availableQuantity,
+                }) => (
+                  <tr key={_id}>
+                    <td></td>
+                    <td>{toyName}</td>
+                    <td>{sellerName}</td>
+                    <td>{subcategory}</td>
+                    <td>{price}</td>
+                    <td>{availableQuantity}</td>
+                    <td className="space-x-5">
+                      <div
+                        className="tooltip hover:tooltip-open tooltip-top"
+                        data-tip="View Detail"
                       >
-                        <FaTrash />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
+                        <Link to={`/toydetails/${_id}`}>
+                          {" "}
+                          <button className="btn btn-circle bg-green-500 border-0">
+                            <FaEye />
+                          </button>{" "}
+                        </Link>
+                      </div>
+                      <div
+                        className="tooltip hover:tooltip-open tooltip-top"
+                        data-tip="Update"
+                      >
+                        <Link to={`/update_toy/${_id}`}>
+                          <button className="btn btn-circle bg-yellow-500 border-0">
+                            <FaEdit />
+                          </button>
+                        </Link>
+                      </div>
+                      <div
+                        className="tooltip hover:tooltip-open tooltip-top"
+                        data-tip="Delete"
+                      >
+                        <button
+                          onClick={() => {
+                            handleDelete(_id);
+                          }}
+                          className="btn btn-circle bg-red-500 border-0"
+                        >
+                          <FaTrash />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
