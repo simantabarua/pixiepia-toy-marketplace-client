@@ -4,6 +4,7 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { Link } from "react-router-dom";
 
 const GallerySection = () => {
   const images = [
@@ -55,21 +56,25 @@ const GallerySection = () => {
         className=" absolute top-0 left-0 w-full h-full "
       >
         {images?.map((image, index) => (
-          <SwiperSlide className="h-full" key={index}>
-            <div className="relative overflow-hidden rounded-xl hover shadow-lg" data-aos="zoom-in-up"
-    data-aos-duration="800">
+          <SwiperSlide className="h-full px-4" key={index}>
+            <div
+              className="relative overflow-hidden rounded-xl hover shadow-lg "
+              data-aos="zoom-in-up"
+              data-aos-duration="800"
+            >
               <img
                 src={image}
                 className="h-64 w-fit object-left-top object-cover md:w-96 transition-transform duration-1000 ease-in-out transform scale-110 hover:scale-125"
                 loading="lazy"
               />
-          
+
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-              <button className="btn bg-pink-500 border-none btn-sm flex it">
-                  Shop Now
-                </button>
-               </div>
-         
+                <Link to="/shop">
+                  <button className="btn bg-pink-500 border-none btn-sm flex it">
+                    Shop Now
+                  </button>
+                </Link>
+              </div>
             </div>
           </SwiperSlide>
         ))}

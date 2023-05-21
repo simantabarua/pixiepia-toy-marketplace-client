@@ -41,7 +41,6 @@ const MyToys = () => {
       });
   };
 
-  console.log(toys);
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -63,7 +62,6 @@ const MyToys = () => {
               setToys(remaining);
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
             }
-            console.log(data);
           });
       }
     });

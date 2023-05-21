@@ -13,7 +13,6 @@ const AllToys = () => {
   const [toys, setToys] = useState([]);
 
   const handleSearch = (result) => {
-    console.log("Search result:", result);
     setToys(result);
   };
 
@@ -38,13 +37,14 @@ const AllToys = () => {
   }, []);
 
   const handlePagination = (pageNumber) => {
+    setIsLoading(true);
     setSelectedPage(pageNumber - 1);
     fetch(`https://server-pixiepia.vercel.app/page?page=${pageNumber}}`)
       .then((response) => response.json())
       .then((data) => {
         const { results } = data;
         setToys(results);
-        console.log(results);
+        setIsLoading(false);
       });
   };
 

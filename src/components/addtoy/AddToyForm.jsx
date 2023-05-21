@@ -20,7 +20,6 @@ const AddToyForm = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
 
         if (result.insertedId) {
           Swal.fire("Toy Added!", "New toy has been added.", "success");
@@ -50,7 +49,6 @@ const AddToyForm = () => {
           </label>
           <input
             type="number"
-            step="0.01"
             {...register("price")}
             placeholder="Price"
             className="input input-bordered"

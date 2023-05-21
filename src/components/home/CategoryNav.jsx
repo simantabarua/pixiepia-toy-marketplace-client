@@ -1,5 +1,4 @@
 import { options } from "../../utils/categoryOptions";
-console.log(options);
 
 const CategoryNav = ({ handleCategorySelect }) => {
   return (

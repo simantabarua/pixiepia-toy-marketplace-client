@@ -18,15 +18,15 @@ const PromoBanner = () => {
     ];
   
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full md:max-w-6xl mx-auto my-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full md:max-w-6xl mx-auto my-8 px-4">
         {bannerData.map((banner, index) => (
           <div
             key={index}
-            className="relative h-52 p-5 flex justify-end items-center my-2 overflow-hidden rounded-lg cursor-pointer"
+            className="relative h-52 p-5 flex justify-end items-center my-2 overflow-hidden rounded-lg cursor-pointer "
             data-aos="fade-up"
             data-aos-duration="1000"    >
             <img
-              className="absolute inset-0 w-full h-full object-fit object-cover transition-transform duration-1000 ease-in-out transform hover:scale-110"
+              className="absolute  inset-0 w-full h-full object-fit object-cover transition-transform duration-1000 ease-in-out transform hover:scale-110"
               src={banner.imageUrl}
               alt="Banner Image"
             />

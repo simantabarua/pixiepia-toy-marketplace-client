@@ -8,10 +8,6 @@ export const options = [
     subcategories: ["Disney Castle", "Toy Story"],
   },
   {
-    category: "Vehicles",
-    subcategories: ["Cars", "Train"],
-  },
-  {
     category: "Playsets",
     subcategories: [
       "Princess Castle",
@@ -20,4 +16,8 @@ export const options = [
       "Pixar Playset",
     ],
   },
+  {
+    category: "Vehicles",
+    subcategories: ["Cars", "Train", "Truck"],
+  }
 ];

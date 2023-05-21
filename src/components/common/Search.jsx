@@ -8,12 +8,9 @@ const Search = ({ onSearch }) => {
     formState: { errors },
   } = useForm();
   const handleSearch = (data) => {
-    console.log(data.search);
     fetch(`https://server-pixiepia.vercel.app/search/${data.search}`)
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
-        // Pass the search result to the parent component
         onSearch(result);
       });
   };
