@@ -4,8 +4,8 @@ console.log(options);
 const CategoryNav = ({ handleCategorySelect }) => {
   return (
     <div
-      className="navbar bg-base-100 z-1"
-    
+      className="navbar bg-base-100 z-10"
+     
     >
       <div className="navbar-start">
         <div className="dropdown">
