@@ -14,7 +14,7 @@ const Login = () => {
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  const { signInUser, googleLogin } = useContext(AuthContext);
+  const { signInUser, googleLogin, setLoading } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -35,8 +35,8 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
+        setLoading(false);
         let errorMessage;
-
         switch (error.code) {
           case "auth/invalid-email":
             errorMessage = "Invalid email address";

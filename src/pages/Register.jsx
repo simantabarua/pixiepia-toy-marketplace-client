@@ -10,7 +10,7 @@ import Lottie from "lottie-react";
 import boxtoy from "./../../public/boxtoy.json";
 const Register = () => {
   usePageTitle("Register");
-  const { createUserWithEmail, auth } = useContext(AuthContext);
+  const { createUserWithEmail, auth, setLoading } = useContext(AuthContext);
   const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
   const [showPassword, setShowPassword] = useState(false);
@@ -38,6 +38,7 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
+        setLoading(false);
         let errorMessage = "";
         switch (error.code) {
           case "auth/email-already-in-use":
