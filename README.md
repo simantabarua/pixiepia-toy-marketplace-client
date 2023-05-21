@@ -30,7 +30,7 @@ Openhttp://localhost:5000 in your browser
 
 ## Features
 
-    - All Toys Page: Displays a table or list of toys added by users, including seller name, toy name, sub-category, price, available quantity, and a "View Details" button. Provides a search system based on toy names.
+- All Toys Page: Displays a table or list of toys added by users, including seller name, toy name, sub-category, price, available quantity, and a "View Details" button. Provides a search system based on toy names.
 
 - Single Toy Details Route (Private): Redirects users to a private route showing detailed information about a specific toy, including picture, name, seller name, seller email, price, rating, available quantity, and description. Optionally, uses a modal for display.
 
@@ -44,5 +44,4 @@ Openhttp://localhost:5000 in your browser
 
 ### Bonus Features
 
-- Mobile and desktop responsive homepage (optional tablet responsiveness)
 - Shop page

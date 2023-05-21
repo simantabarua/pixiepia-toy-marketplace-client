@@ -66,7 +66,7 @@ const Shop = () => {
 
   const handleCategorySelect = (category) => {
     setIsLoading(true);
-    fetch(`https://server-pixiepia.vercel.app/search/${category}`)
+    fetch(`https://server-pixiepia.vercel.app/category/${category}`)
       .then((res) => res.json())
       .then((result) => {
         setToys(result);

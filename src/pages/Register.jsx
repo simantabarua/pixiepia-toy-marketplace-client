@@ -4,11 +4,12 @@ import { AuthContext } from "../context/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import usePageTitle from "../hooks/useTitle";
-
+import Lottie from "lottie-react";
+import boxtoy from "./../../public/boxtoy.json";
 const Register = () => {
-  usePageTitle("Register")
+  usePageTitle("Register");
   const { createUserWithEmail, auth } = useContext(AuthContext);
   const passwordPattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
@@ -60,7 +61,11 @@ const Register = () => {
   return (
     <div className="h-full grid grid-cols-1 md:grid-cols-2 bg-pink-50 md:py-12 px-4 sm:px-6 lg:px-8">
       <div>
-        <img src="" className="w-80" alt="" />
+        <Lottie className="h-72" animationData={boxtoy} />
+        <h2 className="text-2xl md:text-4xl animate-pulse text-center font-bold py-5">
+          Unlock the World of Imagination and Adventure -{" "}
+          <span className="text-pink-600"> Join Our Toyland Family Today!</span>
+        </h2>
       </div>
       <div className="px-5 py-10 border-2 shadow-xl rounded-xl font-bold max-w-lg">
         <h2 className="text-4xl text-center">Register</h2>
@@ -179,6 +184,15 @@ const Register = () => {
             <button className="btn bg-pink-600 w-full border-0" type="submit">
               Register
             </button>
+
+            <div>
+              <h2 className="text-center">
+                Already Have an account?
+                <Link className="btn-link" to="/login">
+                  Click here to Login
+                </Link>
+              </h2>
+            </div>
           </div>
         </form>
       </div>
