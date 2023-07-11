@@ -1,0 +1,4 @@
+.sectionHeader{
+    @apply bg-pink-100  md:h-56 text-center pt-8  space-y-4 flex flex-col items-center justify-center px-2
+    
+}

@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import menuLinks from "../../utils/menuLinks";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaUser } from "react-icons/fa";
 import { HiOutlineX } from "react-icons/hi";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
@@ -8,6 +8,7 @@ import Search from "./Search";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { logOut, user } = useContext(AuthContext);
+  const { displayName, photoURL } = user || {};
   const menuToggler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -36,7 +37,6 @@ const Navbar = () => {
               {navLinks}
               {user && (
                 <>
-                  {" "}
                   <NavLink to="/addtoy">Add Toy</NavLink>{" "}
                   <NavLink to="/mytoys">My Toy</NavLink>
                 </>
@@ -67,9 +67,18 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
+          <>
+            <div className="mx-2 rounded-full border border-black w-8 h-8 md:w-12 md:h-12 cursor-pointer flex justify-center items-center ">
+           {user ? (
+             <img className="rounded-full" src={user.photoURL} alt="" />
+           ) : (
+             <FaUser className="w-6 h-6 md:w-8 md:h-8 " />
+           )}
+         </div>
           <Link onClick={handleLogout}>
             <button className="btn bg-pink-600 border-0">Logout</button>
           </Link>
+          </>
         ) : (
           <Link to="/login">
             <button className="btn bg-pink-600 border-0">Login</button>

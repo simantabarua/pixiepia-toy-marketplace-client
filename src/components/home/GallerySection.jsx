@@ -19,9 +19,9 @@ const GallerySection = () => {
     "https://i.ibb.co/jDD7rh4/hot-Wheels-Ultimate-Garage-Playset.jpg",
     "https://i.ibb.co/xsjNWS3/Jungle-Safari-Animal-Doll-Set.jpg",
     "https://i.ibb.co/gwYBfs9/LEGO-Disney-Cinderella-s-Castle.jpg",
+    "https://i.ibb.co/wQqvGZ8/Rapunzel-Toddler-Doll.jpg",
     "https://i.ibb.co/W3gRQcn/LEGO-Disney-Frozen-Arendelle-Castle.jpg",
     "https://i.ibb.co/WHbkxLk/Mega-Construx-Toy-Story-Pizza-Planet-Playset.jpg",
-    "https://i.ibb.co/wQqvGZ8/Rapunzel-Toddler-Doll.jpg",
   ];
   return (
     <div>

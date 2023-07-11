@@ -20,4 +20,3 @@ export const toySlide = [
 
 
 
-// https://i.ibb.co/KK8W95S/banner-4-min.jpg

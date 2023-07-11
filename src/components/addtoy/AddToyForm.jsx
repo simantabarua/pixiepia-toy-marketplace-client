@@ -10,6 +10,7 @@ const AddToyForm = () => {
   const { user, loading } = useContext(AuthContext);
 
   const handleAddToys = (data) => {
+    console.log(data);
     // Perform your logic to submit the form data
     fetch("https://server-pixiepia.vercel.app/toys", {
       method: "POST",
@@ -17,6 +18,7 @@ const AddToyForm = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify(data),
+      
     })
       .then((res) => res.json())
       .then((result) => {
