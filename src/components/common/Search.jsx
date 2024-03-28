@@ -24,7 +24,7 @@ const Search = ({ onSearch }) => {
               {...register("search", { required: "Please type something" })}
               type="text"
               placeholder="Search Toys.."
-              className="input input-bordered"
+              className="input input-bordered bg-pink-50 border-pink-600"
             />
 
             <button
