@@ -100,7 +100,7 @@ const Shop = () => {
         <div
           className={`bg-gray-900 bg-opacity-50 lg:bg-opacity-0 h-full ${
             showSidebar ? "md:block" : "hidden lg:block"
-          } w-full  md:col-span-3 z-10 absolute lg:relative`}
+          } w-full  md:col-span-2 z-10 absolute lg:relative`}
         >
           <div className=" w-10/12 md:w-1/2 lg:w-full bg-pink-200 h-full space-y-5">
             <p className="text-xl font-bold text-center p-4 bg-pink-400 text-white">
@@ -254,10 +254,10 @@ const Shop = () => {
         </div>
 
         <div className="md:col-span-9">
-          <p className="text-2xl font-bold text-center my-5">
+          <p className="text-2xl font-bold text-center my-4">
             Toy Found {toys.length}
           </p>
-          <div className="flex flex-wrap items-center justify-center   my-5  gap-6 px-3 lg:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {toys.map((toy) => (
               <ToyCard key={toy._id} toy={toy} />
             ))}

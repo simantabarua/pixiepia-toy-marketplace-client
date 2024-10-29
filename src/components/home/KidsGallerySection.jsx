@@ -16,7 +16,7 @@ const KidsGallerySection = () => {
         title={"Kids Zone"}
         subtitle={"Pixiepia Where Dreams Become Reality!"}
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 container mx-auto">
         {images.map((imageUrl, index) => (
           <div
             key={index}

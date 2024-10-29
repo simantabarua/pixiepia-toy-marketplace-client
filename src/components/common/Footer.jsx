@@ -1,4 +1,5 @@
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
+const year = new Date().getFullYear();
 
 const Footer = () => {
   return (
@@ -47,7 +48,8 @@ const Footer = () => {
       </div>
       <div className="flex justify-center items-center bg-pink-200 py-4">
         <p className="text-gray-600 text-sm">
-          &copy; 2023 Your  Pixie<span className="text-pink-600 ">pia </span> All rights reserved.
+          &copy; {year} Pixie<span className="text-pink-600 ">pia </span> All
+          rights reserved.
         </p>
       </div>
     </>

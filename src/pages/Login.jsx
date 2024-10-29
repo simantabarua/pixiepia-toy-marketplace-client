@@ -163,7 +163,7 @@ const Login = () => {
             className="btn btn-outline  w-full"
           >
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg"
               className="w-6 h-6 mx-2"
             />{" "}
             Login With Google
