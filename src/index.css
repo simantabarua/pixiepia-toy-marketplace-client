@@ -1,9 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.active{
-    @apply md:text-pink-600
+body {
+  @apply text-gray-800;
+  font-family: 'Roboto', sans-serif;
 }
 
+@layer base {
+  .font-sans {
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+@font-face {
+  font-family: 'Kiddosy';
+  src: url('./assets/font/KiddosyfreeRegular-GOEag.otf') format('opentype');
+}
+
+.active {
+  @apply md:text-pink-600;
+}
+
+.btn-custom {
+  @apply text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-2 py-1.5 md:px-5 md:py-2.5 text-center;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 50px !important;
+  opacity: 10;
+  @apply !text-pink-600;
+}

@@ -42,18 +42,17 @@ const GallerySection = () => {
         breakpoints={{
           640: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            spaceBetween: 10,
           },
           768: {
             slidesPerView: 3,
-            spaceBetween: 20,
+            spaceBetween: 10,
           },
           1024: {
             slidesPerView: 5,
-            spaceBetween: 20,
           },
         }}
-        className=" absolute top-0 left-0 w-full h-full "
+        className="container absolute top-0 left-0 w-full h-full "
       >
         {images?.map((image, index) => (
           <SwiperSlide className="h-full px-4" key={index}>
@@ -64,13 +63,13 @@ const GallerySection = () => {
             >
               <img
                 src={image}
-                className="h-64 w-fit object-left-top object-cover md:w-96 transition-transform duration-1000 ease-in-out transform scale-110 hover:scale-125"
+                className="h-64 object-left-top object-cover w-full transition-transform duration-1000 ease-in-out transform scale-110 hover:scale-125"
                 loading="lazy"
               />
 
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                 <Link to="/shop">
-                  <button className="btn bg-pink-500 border-none btn-sm flex it">
+                  <button className="btn bg-pink-600 border-none btn-sm flex it">
                     Shop Now
                   </button>
                 </Link>

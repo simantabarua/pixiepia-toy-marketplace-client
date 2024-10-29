@@ -8,7 +8,6 @@ import ShopByCategory from "../components/home/ShopByCategory";
 import usePageTitle from "../hooks/useTitle";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import AboutUsBanner from "../components/home/AboutUsBanner";
 
 const Home = () => {
   usePageTitle("Home");
@@ -22,7 +21,6 @@ const Home = () => {
       <PromoBanner data-aos="fade-up" />
       <GallerySection />
       <ShopByCategory />
-      <AboutUsBanner />
       <OurServices />
       <KidsGallerySection />
     </>
