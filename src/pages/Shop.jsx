@@ -11,41 +11,32 @@ const Shop = () => {
   usePageTitle("Shop");
   const [showSidebar, setShowSidebar] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
-  const buttons = Array.from(Array(totalPages).keys());
   const [selectedPage, setSelectedPage] = useState(0);
   const [loading, setIsLoading] = useState(true);
   const { register, handleSubmit } = useForm();
   const [toys, setToys] = useState([]);
 
   useEffect(() => {
-    const fetchData = () => {
-      setIsLoading(true);
-      fetch(`https://server-pixiepia.vercel.app/page`)
-        .then((response) => response.json())
-        .then((data) => {
-          const { results, totalPages } = data;
-          setTotalPages(totalPages);
-          setIsLoading(false);
-          setToys(results);
-        })
-        .catch((error) => {
-          console.log("Error fetching data:", error);
-          setIsLoading(false);
-        });
-    };
     fetchData();
-  }, []);
+  }, [selectedPage]);
 
-  const handlePagination = (pageNumber) => {
+  const fetchData = () => {
     setIsLoading(true);
-    setSelectedPage(pageNumber - 1);
-    fetch(`https://server-pixiepia.vercel.app/page?page=${pageNumber}}`)
+    fetch(`https://server-pixiepia.vercel.app/page?page=${selectedPage + 1}`)
       .then((response) => response.json())
       .then((data) => {
-        const { results } = data;
+        setToys(data.results);
+        setTotalPages(data.totalPages);
         setIsLoading(false);
-        setToys(results);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
       });
+  };
+
+  const handlePagination = (pageNumber) => {
+    setSelectedPage(pageNumber - 1);
   };
 
   const handleFilterButtonClick = () => {
@@ -54,9 +45,8 @@ const Shop = () => {
 
   const handleFilter = (data) => {
     setIsLoading(true);
-    const { minPrice, maxPrice } = data;
     fetch(
-      `https://server-pixiepia.vercel.app/filter_price?minPrice=${minPrice}&maxPrice=${maxPrice}`
+      `https://server-pixiepia.vercel.app/filter_price?minPrice=${data.minPrice}&maxPrice=${data.maxPrice}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -75,213 +65,135 @@ const Shop = () => {
       });
   };
 
-  if (loading) {
-    return <Loading />;
-  }
-  return (
-    <>
-      <div>
-        <label
+  return loading ? (
+    <Loading />
+  ) : (
+    <div className="bg-gray-100 min-h-screen mt-24">
+      <div className="flex items-center justify-between p-4 bg-white">
+        <button
           onClick={handleFilterButtonClick}
-          htmlFor="my-drawer-2"
-          className="btn btn-outline drawer-button lg:hidden"
+          className="lg:hidden btn btn-outline flex items-center"
         >
           {showSidebar ? (
-            <GrClose className="w-6 h-6 p-1" />
+            <GrClose className="w-5 h-5" />
           ) : (
-            <BiFilter className="w-6 h-6 p-1" />
+            <BiFilter className="w-5 h-5" />
           )}
           Filter
-        </label>
+        </button>
         <CategoryNav handleCategorySelect={handleCategorySelect} />
       </div>
 
-      <main className="flex-grow  place-items-center grid grid-cols-1 lg:grid-cols-12 relative">
-        <div
-          className={`bg-gray-900 bg-opacity-50 lg:bg-opacity-0 h-full ${
-            showSidebar ? "md:block" : "hidden lg:block"
-          } w-full  md:col-span-2 z-10 absolute lg:relative`}
+      <main className="container mx-auto flex">
+        {/* Sidebar */}
+        <aside
+          className={`${
+            showSidebar ? "block" : "hidden lg:block"
+          }   mt-4 p-4 lg:sticky lg:top-16 lg:h-screen absolute z-40 bg-white`}
         >
-          <div className=" w-10/12 md:w-1/2 lg:w-full bg-pink-200 h-full space-y-5">
-            <p className="text-xl font-bold text-center p-4 bg-pink-400 text-white">
-              Filter By
-            </p>
-            {/* price */}
-            <div className="px-4 font-bold ">
-              <p className="card-title py-2">Price</p>
-              <form onSubmit={handleSubmit(handleFilter)}>
-                <div className="flex gap-1 ">
-                  <input
-                    type="text"
-                    placeholder="Min"
-                    className="input input-bordered w-24"
-                    {...register("minPrice")}
-                    required
-                  />
-                  <input
-                    type="text"
-                    placeholder="Max"
-                    className="input input-bordered w-24"
-                    {...register("maxPrice")}
-                    required
-                  />
-                  <button type="submit" className="btn btn-secondary">
-                    filter
-                  </button>
-                </div>
-              </form>
+          <h2 className="text-xl font-bold mb-4">Filter By</h2>
+          <form onSubmit={handleSubmit(handleFilter)} className="space-y-4">
+            {/* Price Filter */}
+            <div>
+              <label className="block text-lg font-semibold">Price Range</label>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="text"
+                  placeholder="Min"
+                  className="input input-bordered w-24"
+                  {...register("minPrice")}
+                />
+                <input
+                  type="text"
+                  placeholder="Max"
+                  className="input input-bordered w-24"
+                  {...register("maxPrice")}
+                />
+                <button type="submit" className="btn bg-pink-600 border-none w-20">
+                  Apply
+                </button>
+              </div>
             </div>
 
-            {/* color */}
-            <div className="px-4 font-bold ">
-              <p className="card-title py-2">Color</p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Red
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Blue
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Orange
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Pink
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Various
-              </p>
+            {/* Color Filter */}
+            <div>
+              <label className="block text-lg font-semibold">Color</label>
+              <div className="space-y-1">
+                {["Red", "Blue", "Orange", "Pink", "Various"].map((color) => (
+                  <div key={color} className="flex items-center">
+                    <input type="checkbox" className="checkbox mr-2" />
+                    <label>{color}</label>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* age */}
-            <div className="px-4 font-bold ">
-              <p className="card-title py-2">Age Range</p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                0-3 years
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                4-6 years
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                7-9 years
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                10-12 years
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                13+ years
-              </p>
+            {/* Age Filter */}
+            <div>
+              <label className="block text-lg font-semibold">Age Range</label>
+              <div className="space-y-1">
+                {[
+                  "0-3 years",
+                  "4-6 years",
+                  "7-9 years",
+                  "10-12 years",
+                  "13+ years",
+                ].map((age) => (
+                  <div key={age} className="flex items-center">
+                    <input type="checkbox" className="checkbox mr-2" />
+                    <label>{age}</label>
+                  </div>
+                ))}
+              </div>
             </div>
-            {/* martial */}
-            <div className="px-4 font-bold ">
-              <p className="card-title py-2">Martial</p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Plastic
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Wood
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Metal
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Fabric
-              </p>
-              <p>
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-xs checkbox-secondary mx-2"
-                />
-                Plush
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <div className="md:col-span-9">
-          <p className="text-2xl font-bold text-center my-4">
-            Toy Found {toys.length}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {/* Material Filter */}
+            <div>
+              <label className="block text-lg font-semibold">Material</label>
+              <div className="space-y-1">
+                {["Plastic", "Wood", "Metal", "Fabric", "Plush"].map(
+                  (material) => (
+                    <div key={material} className="flex items-center">
+                      <input type="checkbox" className="checkbox mr-2" />
+                      <label>{material}</label>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </form>
+        </aside>
+
+        {/* Product Grid */}
+        <section className="flex-1 p-4">
+          <h1 className="text-2xl font-semibold mb-4 text-center">
+            {toys.length} Toys Found
+          </h1>
+          <div className="product-grid">
             {toys.map((toy) => (
               <ToyCard key={toy._id} toy={toy} />
             ))}
           </div>
-          <div>
-            <div className="btn-group flex justify-center my-2">
-              {buttons.map((index) => (
-                <button
-                  onClick={() => {
-                    handlePagination(index + 1);
-                  }}
-                  className={`btn  ${
-                    index === selectedPage ? "bg-pink-600" : ""
-                  }`}
-                  key={index}
-                >
-                  {index + 1}
-                </button>
-              ))}
-            </div>
+
+          {/* Pagination */}
+          <div className="flex justify-center my-8 gap-2">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePagination(index + 1)}
+                className={`btn border-none ${
+                  index === selectedPage
+                    ? "bg-pink-600 text-white hover:bg-pink-700"
+                    : "bg-gray-300"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
           </div>
-        </div>
+        </section>
       </main>
-    </>
+    </div>
   );
 };
 

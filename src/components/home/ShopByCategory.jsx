@@ -53,13 +53,13 @@ const ShopByCategory = () => {
           <p className="text-2xl  text-pink-700">No Toys found</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 my-5 xl:grid-cols-3 2xl:grid-cols-4  gap-6  px-3 lg:px-6 max-w-[100rem] mx-auto">
-          {toys.slice(0, 6)?.map((toy) => (
+        <div className="product-grid max-w-7xl mt-8 md:mt-10 mx-auto">
+          {toys.slice(0, 8)?.map((toy) => (
             <ToyCard key={toy._id} toy={toy} />
           ))}
         </div>
       )}
-      <div className="flex items-center justify-center py-5">
+      <div className="flex items-center justify-center mt-10">
         {toys.length !== 0 && (
           <Link to="/shop">
             <button className="btn btn-secondary animate-bounce ">

@@ -8,26 +8,28 @@ const KidsGallerySection = () => {
     "https://i.ibb.co/84d5ZHZ/7.webp",
     "https://i.ibb.co/ZSq637s/8.webp",
     "https://i.ibb.co/9wJnJ9C/3.webp",
+  
   ];
 
   return (
-    <div>
+    <div className="py-12 bg-gray-50 ">
       <SectionHeader
         title={"Kids Zone"}
-        subtitle={"Pixiepia Where Dreams Become Reality!"}
+        subtitle={"Pixiepia: Where Dreams Become Reality!"}
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 container mx-auto">
+      <div className="grid grid-cols-3 container mx-auto">
         {images.map((imageUrl, index) => (
           <div
             key={index}
-            className="relative overflow-hidden cursor-pointer"
+            className="relative overflow-hidden transition-transform duration-300"
             data-aos="zoom-in-up"
             data-aos-duration="800"
           >
             <img
               src={imageUrl}
-              alt={`Image ${index + 1}`}
-              className="w-full h-auto object-cover transition-transform duration-1000 ease-in-out transform hover:scale-110"
+              alt={`Kids gallery image ${index + 1}`}
+              className="w-300 h-300 object-cover transition-transform duration-500 ease-in-out transform hover:scale-105"
+          
             />
           </div>
         ))}

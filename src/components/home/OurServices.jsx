@@ -1,55 +1,53 @@
 import { FiTruck } from "react-icons/fi";
 import { RiRefund2Fill } from "react-icons/ri";
 import { BsGift, BsHeadset } from "react-icons/bs";
-
 import SectionHeader from "../common/SectionHeader";
 
 const OurServices = () => {
   const servicesData = [
     {
-      icon: <FiTruck className="w-full h-12 text-pink-400" />,
+      icon: <FiTruck className="w-10 h-10 text-pink-500" />,
       title: "Worldwide Shipping",
-      description:
-        "On Order Over $99\nOur dedicated support team is available 24/7",
+      description: "Enjoy global delivery on orders over $99.",
     },
     {
-      icon: <BsHeadset className="w-full h-12 text-pink-400" />,
-      title: "24x7 Service",
-      description: "Our dedicated support team is available 24/7",
+      icon: <BsHeadset className="w-10 h-10 text-pink-500" />,
+      title: "24/7 Support",
+      description: "Our team is here to assist you around the clock.",
     },
     {
-      icon: <BsGift className="w-full h-12 text-pink-400" />,
-      title: "Gift Voucher",
-      description: "Give the perfect gift with our customizable gift vouchers.",
+      icon: <BsGift className="w-10 h-10 text-pink-500" />,
+      title: "Gift Vouchers",
+      description: "Share joy with our customizable gift vouchers.",
     },
     {
-      icon: <RiRefund2Fill className="w-full h-12 text-pink-400" />,
-      title: "Money Back",
-      description: "Experience Worry-Free Shopping with Our Reliable Guarantee",
+      icon: <RiRefund2Fill className="w-10 h-10 text-pink-500" />,
+      title: "Money-Back Guarantee",
+      description: "Shop confidently with our hassle-free returns.",
     },
   ];
- 
 
   return (
-    <div>
+    <div className="py-12">
       <SectionHeader
-        title={"Our Services"}
-        subtitle={
-          "Discover Limitless Possibilities with Our Extraordinary Services"
-        }
+        title="Our Services"
+        subtitle="Discover the unparalleled advantages we offer with our top-notch services."
       />
-
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center py-8">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
         {servicesData.map((service, index) => (
           <div
-            className="text-center"
+            className="text-center p-4  transition-shadow duration-200"
             key={index}
             data-aos="zoom-in-up"
             data-aos-duration="800"
           >
-            {service.icon}
-            <h2 className="font-extrabold text-xl">{service.title}</h2>
-            <p>{service.description}</p>
+            <div className="flex justify-center mb-4">{service.icon}</div>
+            <h2 className="text-lg font-bold text-gray-800 mb-2">
+              {service.title}
+            </h2>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {service.description}
+            </p>
           </div>
         ))}
       </div>
