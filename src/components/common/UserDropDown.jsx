@@ -21,7 +21,7 @@ const UserProfileDropdown = ({ logOut, user }) => {
         </div>
       </div>
       {open && (
-        <div className="absolute w-60 px-5 py-3 bg-white rounded-lg shadow border border-transparent mt-5">
+        <div className="absolute -left-52 md:-left-40 xl:-left-0 w-60 px-5 py-3  border-gray-100 bg-white rounded-lg shadow border border-transparent mt-5">
           <p className="pb-2.5 capitalize text-base font-semibold">
             {user?.displayName}
           </p>

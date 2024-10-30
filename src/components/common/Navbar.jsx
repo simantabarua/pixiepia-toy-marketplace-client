@@ -5,7 +5,7 @@ import { HiOutlineX } from "react-icons/hi";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { useSelector } from "react-redux";
-import { BsCart3, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import UserProfileDropdown from "./UserDropDown";
 import CartDropdown from "./CartDropDown";
 
@@ -25,7 +25,7 @@ const Navbar = () => {
   ));
 
   return (
-    <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+    <nav className="bg-white  fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex items-center justify-between py-4 px-6 lg:px-24">
         {/* Logo and mobile menu toggle */}
         <div className="flex items-center space-x-4">
@@ -86,7 +86,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
+        <div className="md:hidden bg-white border-t border-gray-200">
           <ul className="flex flex-col p-4 space-y-4 text-gray-700 font-medium">
             {navLinks}
             {user && (
